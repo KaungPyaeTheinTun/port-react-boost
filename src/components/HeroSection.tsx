@@ -1,30 +1,41 @@
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { useLang } from "@/contexts/LangContext";
+
 const HeroSection = () => {
+  const { ref, isVisible } = useScrollReveal(0.05);
+  const { t } = useLang();
+
   return (
-    <section className="min-h-screen flex items-center section-padding pt-32" style={{ background: "var(--hero-gradient)" }}>
-      <div className="max-w-4xl mx-auto">
-        <p className="font-mono text-primary mb-5 animate-fade-up">Hi, my name is</p>
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 animate-fade-up" style={{ animationDelay: "0.1s", opacity: 0 }}>
-          John Developer.
-        </h1>
-        <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-muted-foreground mb-6 animate-fade-up" style={{ animationDelay: "0.2s", opacity: 0 }}>
-          I build things for the web.
-        </h2>
-        <p className="text-muted-foreground max-w-xl text-lg leading-relaxed mb-10 animate-fade-up" style={{ animationDelay: "0.3s", opacity: 0 }}>
-          I'm a full-stack developer specializing in building exceptional digital experiences. 
-          Currently focused on building accessible, human-centered products with modern technologies.
+    <section
+      ref={ref}
+      className="min-h-screen flex items-center section-padding pt-32"
+      style={{ background: "var(--hero-gradient)" }}
+    >
+      <div className="max-w-4xl mx-auto w-full">
+        <p className={`text-primary mb-5 text-lg transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+          {t.hero.greeting}
         </p>
-        <div className="flex gap-4 animate-fade-up" style={{ animationDelay: "0.4s", opacity: 0 }}>
+        <h1 className={`text-5xl md:text-7xl lg:text-8xl font-black text-foreground mb-4 tracking-tight transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`} style={{ transitionDelay: "100ms" }}>
+          {t.hero.name}
+        </h1>
+        <h2 className={`text-3xl md:text-5xl lg:text-6xl font-bold text-muted-foreground mb-6 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`} style={{ transitionDelay: "200ms" }}>
+          {t.hero.tagline}
+        </h2>
+        <p className={`text-muted-foreground max-w-xl text-lg leading-relaxed mb-10 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`} style={{ transitionDelay: "300ms" }}>
+          {t.hero.description}
+        </p>
+        <div className={`flex gap-4 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`} style={{ transitionDelay: "400ms" }}>
           <a
             href="#projects"
-            className="border border-primary text-primary px-8 py-3 rounded font-mono hover:bg-primary/10 transition-colors"
+            className="border-2 border-primary text-primary px-8 py-3 rounded-lg font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300"
           >
-            View My Work
+            {t.hero.viewWork}
           </a>
           <a
             href="#contact"
-            className="bg-primary text-primary-foreground px-8 py-3 rounded font-mono hover:bg-primary/90 transition-colors"
+            className="bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
           >
-            Get In Touch
+            {t.hero.getInTouch}
           </a>
         </div>
       </div>

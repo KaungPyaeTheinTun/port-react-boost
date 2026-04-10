@@ -1,5 +1,6 @@
 import { ExternalLink, Github } from "lucide-react";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { useLang } from "@/contexts/LangContext";
 
 const projects = [
   {
@@ -8,6 +9,7 @@ const projects = [
     tech: ["React", "Node.js", "PostgreSQL", "Stripe", "Redis"],
     github: "#",
     live: "#",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
   },
   {
     title: "Task Management App",
@@ -15,6 +17,7 @@ const projects = [
     tech: ["Next.js", "TypeScript", "Prisma", "Socket.io"],
     github: "#",
     live: "#",
+    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
   },
   {
     title: "AI Content Generator",
@@ -22,6 +25,7 @@ const projects = [
     tech: ["React", "Python", "FastAPI", "OpenAI", "Docker"],
     github: "#",
     live: "#",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
   },
   {
     title: "Real-Time Analytics Dashboard",
@@ -29,53 +33,63 @@ const projects = [
     tech: ["Vue.js", "D3.js", "Go", "ClickHouse", "Kafka"],
     github: "#",
     live: "#",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
   },
 ];
 
 const ProjectsSection = () => {
   const { ref, isVisible } = useScrollReveal();
+  const { t } = useLang();
 
   return (
     <section id="projects" className="section-padding" ref={ref}>
-      <div className={`max-w-4xl mx-auto transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+      <div className={`max-w-5xl mx-auto transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <h2 className="flex items-center gap-3 text-2xl md:text-3xl font-bold text-foreground mb-10">
-          <span className="font-mono text-primary text-lg">03.</span>
-          Featured Projects
+          <span className="text-primary text-lg font-mono">03.</span>
+          {t.projects.title}
           <span className="h-px bg-border flex-1 max-w-xs" />
         </h2>
 
-        <div className="grid gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project, i) => (
             <div
               key={project.title}
-              className={`glass rounded-lg p-6 md:p-8 hover:border-primary/50 hover:-translate-y-1 transition-all duration-500 group ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+              className={`glass rounded-xl overflow-hidden hover:border-primary/50 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500 group ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
               style={{ transitionDelay: `${200 + i * 150}ms` }}
             >
-              <div className="flex items-start justify-between mb-3">
-                <span className="font-mono text-primary text-xs">
-                  Project {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="flex gap-3">
-                  <a href={project.github} className="text-muted-foreground hover:text-primary transition-colors">
-                    <Github size={18} />
+              {/* Card image */}
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
+                <div className="absolute top-3 right-3 flex gap-2">
+                  <a href={project.github} className="p-2 rounded-lg bg-background/80 backdrop-blur-sm text-muted-foreground hover:text-primary transition-colors duration-300">
+                    <Github size={16} />
                   </a>
-                  <a href={project.live} className="text-muted-foreground hover:text-primary transition-colors">
-                    <ExternalLink size={18} />
+                  <a href={project.live} className="p-2 rounded-lg bg-background/80 backdrop-blur-sm text-muted-foreground hover:text-primary transition-colors duration-300">
+                    <ExternalLink size={16} />
                   </a>
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                {project.title}
-              </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {project.tech.map((t) => (
-                  <span key={t} className="text-xs font-mono text-primary/80 bg-primary/10 px-2 py-1 rounded">
-                    {t}
-                  </span>
-                ))}
+
+              {/* Card body */}
+              <div className="p-6">
+                <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                  {project.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((t) => (
+                    <span key={t} className="text-xs font-medium text-primary bg-primary/10 px-2.5 py-1 rounded-full">
+                      {t}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
