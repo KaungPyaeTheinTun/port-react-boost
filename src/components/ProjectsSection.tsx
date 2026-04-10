@@ -1,34 +1,31 @@
 import { ExternalLink, Github } from "lucide-react";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const projects = [
   {
     title: "E-Commerce Platform",
-    description:
-      "A full-stack e-commerce application with real-time inventory management, payment processing with Stripe, and an admin dashboard for analytics.",
+    description: "A full-stack e-commerce application with real-time inventory management, payment processing with Stripe, and an admin dashboard for analytics.",
     tech: ["React", "Node.js", "PostgreSQL", "Stripe", "Redis"],
     github: "#",
     live: "#",
   },
   {
     title: "Task Management App",
-    description:
-      "A collaborative project management tool featuring drag-and-drop Kanban boards, real-time updates via WebSockets, and team chat functionality.",
+    description: "A collaborative project management tool featuring drag-and-drop Kanban boards, real-time updates via WebSockets, and team chat functionality.",
     tech: ["Next.js", "TypeScript", "Prisma", "Socket.io"],
     github: "#",
     live: "#",
   },
   {
     title: "AI Content Generator",
-    description:
-      "An AI-powered content generation platform using OpenAI's API. Features include template management, content history, and team workspaces.",
+    description: "An AI-powered content generation platform using OpenAI's API. Features include template management, content history, and team workspaces.",
     tech: ["React", "Python", "FastAPI", "OpenAI", "Docker"],
     github: "#",
     live: "#",
   },
   {
     title: "Real-Time Analytics Dashboard",
-    description:
-      "A data visualization dashboard processing millions of events per day with interactive charts, custom alerts, and automated reporting.",
+    description: "A data visualization dashboard processing millions of events per day with interactive charts, custom alerts, and automated reporting.",
     tech: ["Vue.js", "D3.js", "Go", "ClickHouse", "Kafka"],
     github: "#",
     live: "#",
@@ -36,9 +33,11 @@ const projects = [
 ];
 
 const ProjectsSection = () => {
+  const { ref, isVisible } = useScrollReveal();
+
   return (
-    <section id="projects" className="section-padding">
-      <div className="max-w-4xl mx-auto">
+    <section id="projects" className="section-padding" ref={ref}>
+      <div className={`max-w-4xl mx-auto transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <h2 className="flex items-center gap-3 text-2xl md:text-3xl font-bold text-foreground mb-10">
           <span className="font-mono text-primary text-lg">03.</span>
           Featured Projects
@@ -49,7 +48,8 @@ const ProjectsSection = () => {
           {projects.map((project, i) => (
             <div
               key={project.title}
-              className="glass rounded-lg p-6 md:p-8 hover:border-primary/50 transition-all group"
+              className={`glass rounded-lg p-6 md:p-8 hover:border-primary/50 hover:-translate-y-1 transition-all duration-500 group ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+              style={{ transitionDelay: `${200 + i * 150}ms` }}
             >
               <div className="flex items-start justify-between mb-3">
                 <span className="font-mono text-primary text-xs">
