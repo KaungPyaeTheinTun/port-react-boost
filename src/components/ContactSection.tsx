@@ -1,23 +1,14 @@
-import { useState, useRef, useEffect } from "react";
-import { Mail, Send, Loader2, CheckCircle } from "lucide-react";
+import { useState } from "react";
+import { Send, Loader2, CheckCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [focusedField, setFocusedField] = useState<string | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
-      { threshold: 0.15 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+  const { ref: sectionRef, isVisible } = useScrollReveal();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
