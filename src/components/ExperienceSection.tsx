@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { useLang } from "@/contexts/LangContext";
 
 const experiences = [
   {
@@ -37,13 +38,14 @@ const experiences = [
 const ExperienceSection = () => {
   const [active, setActive] = useState(0);
   const { ref, isVisible } = useScrollReveal();
+  const { t } = useLang();
 
   return (
     <section id="experience" className="section-padding bg-card/30" ref={ref}>
       <div className={`max-w-4xl mx-auto transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <h2 className="flex items-center gap-3 text-2xl md:text-3xl font-bold text-foreground mb-10">
-          <span className="font-mono text-primary text-lg">04.</span>
-          Experience
+          <span className="text-primary text-lg font-mono">04.</span>
+          {t.experience.title}
           <span className="h-px bg-border flex-1 max-w-xs" />
         </h2>
 
@@ -56,9 +58,9 @@ const ExperienceSection = () => {
               <button
                 key={exp.company}
                 onClick={() => setActive(i)}
-                className={`px-4 py-3 text-sm font-mono text-left whitespace-nowrap transition-all duration-300
+                className={`px-5 py-3 text-sm text-left whitespace-nowrap transition-all duration-300
                   ${active === i
-                    ? "text-primary border-b-2 md:border-b-0 md:border-l-2 border-primary bg-primary/5"
+                    ? "text-primary border-b-2 md:border-b-0 md:border-l-2 border-primary bg-primary/5 font-bold"
                     : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
                   }`}
               >
@@ -67,15 +69,12 @@ const ExperienceSection = () => {
             ))}
           </div>
 
-          <div
-            key={active}
-            className="min-h-[280px] animate-fade-up"
-          >
-            <h3 className="text-lg font-semibold text-foreground">
+          <div key={active} className="min-h-[280px] animate-fade-up">
+            <h3 className="text-lg font-bold text-foreground">
               {experiences[active].role}{" "}
               <span className="text-primary">@ {experiences[active].company}</span>
             </h3>
-            <p className="font-mono text-sm text-muted-foreground mb-5">
+            <p className="text-sm text-muted-foreground mb-5 font-mono">
               {experiences[active].period}
             </p>
             <ul className="space-y-3">
@@ -85,7 +84,7 @@ const ExperienceSection = () => {
                   className="flex gap-3 text-sm text-muted-foreground animate-fade-up"
                   style={{ animationDelay: `${i * 100}ms`, opacity: 0 }}
                 >
-                  <span className="text-primary mt-1 shrink-0">▹</span>
+                  <span className="text-primary mt-0.5 shrink-0">▹</span>
                   {bullet}
                 </li>
               ))}
