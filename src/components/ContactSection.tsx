@@ -44,6 +44,12 @@ const ContactSection = () => {
     try {
       const { error } = await supabase.from("contact_submissions").insert({ name, email, message });
       if (error) throw error;
+
+      // Send email notification (non-blocking — don't fail the form if email fails)
+      supabase.functions.invoke('notify-contact', {
+        body: { name, email, message },
+      }).catch(console.error);
+
       setStatus("success");
       setFormData({ name: "", email: "", message: "" });
     } catch {
