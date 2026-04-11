@@ -15,7 +15,7 @@ const HeroSection = () => {
         <p className={`text-primary mb-5 text-lg transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
           {t.hero.greeting}
         </p>
-        <h1 className={`text-5xl md:text-7xl lg:text-8xl font-black text-foreground mb-4 tracking-tight transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`} style={{ transitionDelay: "100ms" }}>
+        <h1 className={`text-4xl md:text-5xl lg:text-6xl font-black text-foreground mb-4 tracking-tight transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`} style={{ transitionDelay: "100ms" }}>
           {t.hero.name}
         </h1>
         <h2 className={`text-3xl md:text-5xl lg:text-6xl font-bold text-muted-foreground mb-6 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`} style={{ transitionDelay: "200ms" }}>
