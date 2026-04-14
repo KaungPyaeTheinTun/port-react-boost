@@ -6,71 +6,71 @@
 
 @layer base {
   :root, .light {
-    --background: 45 40% 96%;
-    --foreground: 345 30% 12%;
+    --background: 0 0% 97%;
+    --foreground: 220 20% 12%;
 
-    --card: 45 35% 93%;
-    --card-foreground: 345 30% 12%;
+    --card: 0 0% 94%;
+    --card-foreground: 220 20% 12%;
 
-    --popover: 45 40% 96%;
-    --popover-foreground: 345 30% 12%;
+    --popover: 0 0% 97%;
+    --popover-foreground: 220 20% 12%;
 
-    --primary: 345 60% 35%;
-    --primary-foreground: 45 40% 96%;
+    --primary: 348 80% 45%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 45 25% 88%;
-    --secondary-foreground: 345 20% 25%;
+    --secondary: 220 10% 90%;
+    --secondary-foreground: 220 15% 25%;
 
-    --muted: 45 20% 90%;
-    --muted-foreground: 345 8% 45%;
+    --muted: 220 8% 92%;
+    --muted-foreground: 220 8% 45%;
 
-    --accent: 345 60% 35%;
-    --accent-foreground: 45 40% 96%;
+    --accent: 348 80% 45%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 60% 50%;
-    --destructive-foreground: 45 40% 96%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 45 18% 82%;
-    --input: 45 18% 82%;
-    --ring: 345 60% 35%;
+    --border: 220 8% 85%;
+    --input: 220 8% 85%;
+    --ring: 348 80% 45%;
 
     --radius: 0.75rem;
 
-    --hero-gradient: linear-gradient(135deg, hsl(345 60% 35% / 0.08), hsl(45 40% 96%));
-    --glow: 0 0 40px hsl(345 60% 35% / 0.12);
+    --hero-gradient: linear-gradient(135deg, hsl(348 80% 45% / 0.08), hsl(0 0% 97%));
+    --glow: 0 0 40px hsl(348 80% 45% / 0.12);
   }
 
   .dark {
-    --background: 345 25% 8%;
-    --foreground: 45 30% 90%;
+    --background: 225 30% 6%;
+    --foreground: 220 10% 90%;
 
-    --card: 345 20% 11%;
-    --card-foreground: 45 30% 90%;
+    --card: 225 25% 9%;
+    --card-foreground: 220 10% 90%;
 
-    --popover: 345 20% 11%;
-    --popover-foreground: 45 30% 90%;
+    --popover: 225 25% 9%;
+    --popover-foreground: 220 10% 90%;
 
-    --primary: 45 80% 55%;
-    --primary-foreground: 345 25% 8%;
+    --primary: 348 85% 55%;
+    --primary-foreground: 225 30% 6%;
 
-    --secondary: 345 15% 16%;
-    --secondary-foreground: 45 20% 75%;
+    --secondary: 225 18% 15%;
+    --secondary-foreground: 220 8% 72%;
 
-    --muted: 345 12% 18%;
-    --muted-foreground: 345 6% 52%;
+    --muted: 225 15% 17%;
+    --muted-foreground: 220 6% 50%;
 
-    --accent: 45 80% 55%;
-    --accent-foreground: 345 25% 8%;
+    --accent: 348 85% 55%;
+    --accent-foreground: 225 30% 6%;
 
     --destructive: 0 60% 50%;
-    --destructive-foreground: 45 40% 96%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 345 12% 20%;
-    --input: 345 12% 20%;
-    --ring: 45 80% 55%;
+    --border: 225 15% 18%;
+    --input: 225 15% 18%;
+    --ring: 348 85% 55%;
 
-    --hero-gradient: linear-gradient(135deg, hsl(45 80% 55% / 0.1), hsl(345 25% 8%));
-    --glow: 0 0 40px hsl(45 80% 55% / 0.15);
+    --hero-gradient: linear-gradient(135deg, hsl(348 85% 55% / 0.1), hsl(225 30% 6%));
+    --glow: 0 0 40px hsl(348 85% 55% / 0.15);
   }
 }
 
@@ -103,13 +103,13 @@
   }
 
   ::selection {
-    background: hsl(345 60% 35% / 0.3);
+    background: hsl(348 80% 45% / 0.3);
   }
 }
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[hsl(345,60%,35%)] to-[hsl(45,80%,55%)];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-[hsl(0,70%,60%)];
   }
 
   .section-padding {
