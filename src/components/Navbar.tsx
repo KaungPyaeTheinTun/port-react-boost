@@ -114,7 +114,16 @@ const Navbar = () => {
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex flex-col h-full pt-20 px-8 pb-8">
+        <div className="flex items-center justify-end px-6 pt-5">
+          <button
+            onClick={() => setIsOpen(false)}
+            className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
+            aria-label="Close menu"
+          >
+            <X size={22} />
+          </button>
+        </div>
+        <div className="flex flex-col h-full pt-4 px-8 pb-8">
           <ul className="flex flex-col gap-2">
             {navLinks.map((link, i) => (
               <li key={link.href}>
