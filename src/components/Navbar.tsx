@@ -123,7 +123,7 @@ const Navbar = () => {
             <X size={22} />
           </button>
         </div>
-        <div className="flex flex-col h-full pt-4 px-8 pb-8">
+        <div className="flex flex-col flex-1 overflow-y-auto pt-4 px-8 pb-8" style={{ height: 'calc(100% - 60px)' }}>
           <ul className="flex flex-col gap-2">
             {navLinks.map((link, i) => (
               <li key={link.href}>
