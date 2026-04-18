@@ -49,23 +49,17 @@ const HeroSection = () => {
           {/* Soft blurred glow frame */}
           <div
             aria-hidden
-            className="absolute -inset-6 md:-inset-10 bg-primary/30 blur-3xl"
+            className="absolute -inset-6 md:-inset-10 rounded-full bg-primary/30 blur-3xl"
           />
           <div
             aria-hidden
-            className="absolute -inset-2 bg-gradient-to-tr from-primary/40 via-primary/10 to-transparent blur-2xl"
+            className="absolute -inset-2 rounded-full bg-gradient-to-tr from-primary/40 via-primary/10 to-transparent blur-2xl"
           />
           <img
             src={profileImg}
             alt={t.hero.name}
             loading="lazy"
-            className="relative w-64 h-80 md:w-80 md:h-[28rem] lg:w-96 lg:h-[32rem] object-cover"
-            style={{
-              WebkitMaskImage:
-                "radial-gradient(ellipse at center, black 45%, transparent 85%)",
-              maskImage:
-                "radial-gradient(ellipse at center, black 45%, transparent 85%)",
-            }}
+            className="relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover rounded-full"
           />
         </div>
       </div>
