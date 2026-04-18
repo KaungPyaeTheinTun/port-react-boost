@@ -2,10 +2,10 @@ import { ExternalLink, Github } from "lucide-react";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { useLang } from "@/contexts/LangContext";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import busTicketImg from "@/assets/project-bus-ticket.jpg";
-import trainingImg from "@/assets/project-training.jpg";
-import supportTicketImg from "@/assets/project-support-ticket.jpg";
-import employeeImg from "@/assets/project-employee.jpg";
+import busTicketImg from "@/assets/project-bus-ticket.png";
+import trainingImg from "@/assets/project-training.png";
+import supportTicketImg from "@/assets/project-support-ticket.png";
+import employeeImg from "@/assets/project-employee.png";
 
 const GITHUB_URL = "https://github.com/KaungPyaeTheinTun";
 
