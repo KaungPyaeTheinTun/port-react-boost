@@ -3,10 +3,10 @@ import { useState } from "react";
 import { useLang } from "@/contexts/LangContext";
 
 const socials = [
-  { icon: Github, href: "#", label: "GitHub" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Mail, href: "mailto:hello@dev.com", label: "Email" },
+  { icon: Github, href: "https://github.com/KaungPyaeTheinTun", label: "GitHub", external: true },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/kaungpyae-theintun-943997175/", label: "LinkedIn", external: true },
+  { icon: Twitter, href: "https://x.com/Kaungpyaet77503", label: "Twitter", external: true },
+  { icon: Mail, href: "mailto:kaungpyaethaintun@gmail.com", label: "Email", external: false },
 ];
 
 const Footer = () => {
@@ -17,7 +17,7 @@ const Footer = () => {
     <footer className="py-12 px-6 border-t border-border">
       <div className="max-w-4xl mx-auto flex flex-col items-center gap-6">
         <div className="flex items-center gap-5">
-          {socials.map(({ icon: Icon, href, label }, i) => (
+          {socials.map(({ icon: Icon, href, label, external }, i) => (
             <div key={label} className="relative">
               {/* Tooltip */}
               <span
@@ -30,6 +30,8 @@ const Footer = () => {
               </span>
               <a
                 href={href}
+                target={external ? "_blank" : undefined}
+                rel={external ? "noopener noreferrer" : undefined}
                 className="block p-3 rounded-xl text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300 hover:-translate-y-1"
                 aria-label={label}
                 onMouseEnter={() => setHoveredIdx(i)}
