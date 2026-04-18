@@ -60,6 +60,12 @@ const HeroSection = () => {
             alt={t.hero.name}
             loading="lazy"
             className="relative w-64 h-80 md:w-80 md:h-[28rem] lg:w-96 lg:h-[32rem] object-cover"
+            style={{
+              WebkitMaskImage:
+                "radial-gradient(ellipse at center, black 45%, transparent 85%)",
+              maskImage:
+                "radial-gradient(ellipse at center, black 45%, transparent 85%)",
+            }}
           />
         </div>
       </div>
