@@ -3,10 +3,10 @@ import { useState } from "react";
 import { useLang } from "@/contexts/LangContext";
 
 const socials = [
-  { icon: Github, href: "#", label: "GitHub" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Mail, href: "mailto:hello@dev.com", label: "Email" },
+  { icon: Github, href: "https://github.com/KaungPyaeTheinTun", label: "GitHub", external: true },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/kaungpyae-theintun-943997175/", label: "LinkedIn", external: true },
+  { icon: Twitter, href: "https://x.com/Kaungpyaet77503", label: "Twitter", external: true },
+  { icon: Mail, href: "mailto:kaungpyaethaintun@gmail.com", label: "Email", external: false },
 ];
 
 const Footer = () => {
