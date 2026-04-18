@@ -16,7 +16,7 @@ const translations = {
     about: {
       title: "About Me",
       frontend: "Frontend",
-      frontendDesc: "React, TypeScript, Tailwind",
+      frontendDesc: "HTML5, CSS3, bootstrap5, Tailwind, React",
       backend: "Backend",
       backendDesc: "PHP, Laravel, ASP.NET, REST/GraphQL",
       database: "Database",

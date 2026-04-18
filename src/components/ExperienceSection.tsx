@@ -4,9 +4,9 @@ import { useLang } from "@/contexts/LangContext";
 
 const experiences = [
   {
-    company: "TechCorp Inc.",
+    company: "ITVIsionHub comp.",
     role: "Senior Full-Stack Developer",
-    period: "2022 — Present",
+    period: "2026 — Present",
     bullets: [
       "Lead a team of 5 engineers building a microservices architecture serving 2M+ users",
       "Implemented CI/CD pipelines reducing deployment time by 60%",
@@ -14,9 +14,9 @@ const experiences = [
     ],
   },
   {
-    company: "StartupXYZ",
+    company: "ITVIsionHub comp.",
     role: "Full-Stack Developer",
-    period: "2020 — 2022",
+    period: "2025 — 2026",
     bullets: [
       "Built the core product from scratch using React, Node.js, and PostgreSQL",
       "Designed and implemented RESTful APIs consumed by web and mobile clients",
@@ -24,9 +24,9 @@ const experiences = [
     ],
   },
   {
-    company: "WebAgency",
+    company: "ITVIsionHub comp.",
     role: "Junior Developer",
-    period: "2019 — 2020",
+    period: "2024 — 2025",
     bullets: [
       "Developed responsive web applications for 10+ clients across various industries",
       "Collaborated with designers to translate Figma mockups into pixel-perfect interfaces",
