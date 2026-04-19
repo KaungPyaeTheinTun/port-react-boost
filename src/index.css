@@ -105,13 +105,13 @@
   }
 
   ::selection {
-    background: hsl(348 80% 45% / 0.3);
+    background: hsl(224 34% 19% / 0.3);
   }
 }
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-[hsl(0,70%,60%)];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-foreground;
   }
 
   .section-padding {
