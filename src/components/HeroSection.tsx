@@ -46,24 +46,16 @@ const HeroSection = () => {
           className={`relative mx-auto md:mx-0 order-first md:order-last transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
           style={{ transitionDelay: "200ms" }}
         >
-          {/* Soft blurred glow */}
-          <div
-            aria-hidden
-            className="absolute -inset-6 md:-inset-10 rounded-[2rem] bg-primary/20 blur-3xl"
-          />
-          {/* Card frame */}
-          <div className="relative rounded-[2rem] bg-foreground p-3 md:p-4 shadow-2xl shadow-primary/30">
-            <div className="relative overflow-hidden rounded-[1.5rem]">
-              <img
-                src={profileImg}
-                alt={t.hero.name}
-                loading="lazy"
-                className="w-64 h-80 md:w-72 md:h-96 lg:w-80 lg:h-[26rem] object-cover"
-              />
-              {/* Name badge overlay */}
-              <div className="absolute bottom-4 left-4 bg-primary text-primary-foreground px-4 py-2 rounded-md font-mono text-xs md:text-sm font-semibold tracking-wider uppercase">
-                {t.hero.name.replace(".", "")} · Dev
-              </div>
+          <div className="relative pb-8">
+            <img
+              src={profileImg}
+              alt={t.hero.name}
+              loading="lazy"
+              className="w-64 h-80 md:w-72 md:h-96 lg:w-80 lg:h-[26rem] object-cover rounded-[1.5rem] shadow-2xl shadow-primary/30"
+            />
+            {/* Floating name badge */}
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-5 py-2.5 rounded-md font-mono text-xs md:text-sm font-semibold tracking-wider uppercase shadow-xl whitespace-nowrap">
+              {t.hero.name.replace(".", "")} · Dev
             </div>
           </div>
         </div>
