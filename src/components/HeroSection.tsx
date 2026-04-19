@@ -54,8 +54,8 @@ const HeroSection = () => {
               className="w-64 h-80 md:w-72 md:h-96 lg:w-80 lg:h-[26rem] object-cover rounded-[1.5rem] shadow-2xl shadow-primary/30"
             />
             {/* Floating name badge */}
-            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-5 py-2.5 rounded-md font-mono text-xs md:text-sm font-semibold tracking-wider uppercase shadow-xl whitespace-nowrap">
-              {t.hero.name.replace(".", "")} · Dev
+            <div className="absolute -bottom-3 left-4 bg-[hsl(75,90%,60%)] text-[hsl(224,34%,12%)] px-5 py-2.5 rounded-full font-mono text-xs md:text-sm font-bold tracking-[0.2em] uppercase shadow-xl whitespace-nowrap">
+              Min Thu · Dev
             </div>
           </div>
         </div>
