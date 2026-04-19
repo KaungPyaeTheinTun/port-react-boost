@@ -6,39 +6,38 @@
 
 @layer base {
   :root, .light {
-    /* Vanilla Cream background, Midnight Indigo foreground */
-    --background: 39 56% 89%;
-    --foreground: 224 34% 19%;
+    --background: 0 0% 97%;
+    --foreground: 220 20% 12%;
 
-    --card: 39 50% 93%;
-    --card-foreground: 224 34% 19%;
+    --card: 0 0% 94%;
+    --card-foreground: 220 20% 12%;
 
-    --popover: 39 56% 89%;
-    --popover-foreground: 224 34% 19%;
+    --popover: 0 0% 97%;
+    --popover-foreground: 220 20% 12%;
 
     --primary: 224 34% 19%;
-    --primary-foreground: 39 56% 89%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 39 40% 82%;
-    --secondary-foreground: 224 34% 19%;
+    --secondary: 220 10% 90%;
+    --secondary-foreground: 220 15% 25%;
 
-    --muted: 39 35% 85%;
-    --muted-foreground: 224 20% 35%;
+    --muted: 220 8% 92%;
+    --muted-foreground: 220 8% 45%;
 
     --accent: 224 34% 19%;
-    --accent-foreground: 39 56% 89%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 60% 45%;
-    --destructive-foreground: 39 56% 89%;
+    --destructive: 0 60% 50%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 39 25% 78%;
-    --input: 39 25% 78%;
+    --border: 220 8% 85%;
+    --input: 220 8% 85%;
     --ring: 224 34% 19%;
 
     --radius: 0.75rem;
 
-    --hero-gradient: linear-gradient(135deg, hsl(224 34% 19% / 0.08), hsl(39 56% 89%));
-    --glow: 0 0 40px hsl(224 34% 19% / 0.15);
+    --hero-gradient: linear-gradient(135deg, hsl(224 34% 19% / 0.08), hsl(0 0% 97%));
+    --glow: 0 0 40px hsl(224 34% 19% / 0.12);
   }
 
   .dark {
