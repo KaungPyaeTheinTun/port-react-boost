@@ -23,7 +23,7 @@ const projects = [
     title: "Training Management System",
     description:
       "A complete training management solution built with Laravel for managing courses, trainers, students, schedules, and progress tracking. Deployed in production for ITVisionSoft.",
-    tech: ["HTML5", "CSS3", "JavaScript", "Bootstrap", "Tailwind", "PHP", "Laravel", "MySQL", "Docker", "Git", "GitHub"],
+    tech: ["HTML5", "CSS3", "JavaScript", "Tailwind", "Laravel", "MySQL", "Docker", "Nginx", "Digital Ocean", "Redis", "Git", "GitHub"],
     github: GITHUB_URL,
     live: "https://itvisionsoft.com/",
     image: trainingImg,
@@ -32,7 +32,7 @@ const projects = [
     title: "Support Ticket Portal",
     description:
       "A modern customer support ticketing portal with React frontend and Laravel API backend. Features Redis caching, Nginx reverse proxy, and Dockerized deployment for scalability.",
-    tech: ["React", "Laravel", "Redis", "Nginx", "Docker", "Git", "GitHub"],
+    tech: ["React", "Laravel", "MySQL", "Redis", "Nginx","Docker", "Git", "GitHub"],
     github: GITHUB_URL,
     live: null,
     image: supportTicketImg,
@@ -41,7 +41,7 @@ const projects = [
     title: "Employee Management System",
     description:
       "An enterprise employee management application built on ASP.NET and MSSQL. Manages employee records, departments, attendance, and reporting with a clean admin interface.",
-    tech: ["ASP.NET", "MSSQL", "Docker", "GitHub"],
+    tech: ["ASP.NET", "Tailwind","MSSQL", "Docker", "GitHub"],
     github: GITHUB_URL,
     live: null,
     image: employeeImg,
