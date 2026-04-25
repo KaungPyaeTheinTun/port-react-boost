@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ArrowRight } from "lucide-react";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { useLang } from "@/contexts/LangContext";
 import profileImg from "@/assets/profile.jpeg";
@@ -74,9 +75,12 @@ const HeroSection = () => {
             </a>
             <a
               href="#contact"
-              className="bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
+              className="inline-flex items-center gap-3 bg-primary text-primary-foreground pl-7 pr-3 py-2 rounded-lg font-semibold hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
             >
               {t.hero.getInTouch}
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-background text-foreground">
+                <ArrowRight size={18} />
+              </span>
             </a>
           </div>
         </div>

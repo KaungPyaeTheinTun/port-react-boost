@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { BriefcaseBusiness, FileText, FolderKanban, Mail, Menu, Sparkles, User, X } from "lucide-react";
 import { useLang } from "@/contexts/LangContext";
 
 const Navbar = () => {
@@ -35,11 +35,11 @@ const Navbar = () => {
   }, [isOpen]);
 
   const navLinks = [
-    { label: t.nav.about, href: "#about" },
-    { label: t.nav.skills, href: "#skills" },
-    { label: t.nav.projects, href: "#projects" },
-    { label: t.nav.experience, href: "#experience" },
-    { label: t.nav.contact, href: "#contact" },
+    { label: t.nav.about, href: "#about", icon: <User size={16} /> },
+    { label: t.nav.skills, href: "#skills", icon: <Sparkles size={16} /> },
+    { label: t.nav.projects, href: "#projects", icon: <FolderKanban size={16} /> },
+    { label: t.nav.experience, href: "#experience", icon: <BriefcaseBusiness size={16} /> },
+    { label: t.nav.contact, href: "#contact", icon: <Mail size={16} /> },
   ];
 
   return (
@@ -59,11 +59,14 @@ const Navbar = () => {
             Portfolio
           </a>
           <button
-            className="relative z-[60] h-11 w-16 rounded-full border border-border/50 bg-background/85 backdrop-blur-xl text-foreground flex items-center justify-center hover:bg-background transition-all duration-300"
+            className="relative z-[60] h-11 px-4 rounded-full border border-border/50 bg-background/90 backdrop-blur-xl text-foreground flex items-center gap-2 hover:bg-background transition-all duration-300"
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Close menu" : "Open menu"}
           >
-            {isOpen ? <X size={20} /> : <Menu size={20} />}
+            <span className="text-[11px] font-semibold tracking-[0.08em] uppercase">
+              Menu
+            </span>
+            {isOpen ? <X size={16} /> : <Menu size={16} />}
           </button>
         </div>
       </nav>
@@ -98,9 +101,10 @@ const Navbar = () => {
                 <a
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="block py-3 px-4 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300 text-base font-medium"
+                  className="flex items-center gap-3 py-3 px-4 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300 text-base font-medium"
                   style={{ transitionDelay: isOpen ? `${i * 50}ms` : "0ms" }}
                 >
+                  <span className="opacity-85">{link.icon}</span>
                   {link.label}
                 </a>
               </li>
@@ -110,8 +114,9 @@ const Navbar = () => {
           <div className="mt-auto">
             <a
               href="/resume.pdf"
-              className="block text-center border border-primary text-primary px-4 py-3 rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 font-semibold"
+              className="inline-flex w-full items-center justify-center gap-2 border border-primary text-primary px-4 py-3 rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 font-semibold"
             >
+              <FileText size={16} />
               {t.nav.resume}
             </a>
           </div>
