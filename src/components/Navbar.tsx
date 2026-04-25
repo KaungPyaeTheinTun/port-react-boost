@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BriefcaseBusiness, FileText, FolderKanban, Mail, Menu, Sparkles, User, X } from "lucide-react";
+import { ArrowUpRight, BriefcaseBusiness, FileText, FolderKanban, Mail, Menu, Sparkles, User, X } from "lucide-react";
 import { useLang } from "@/contexts/LangContext";
 
 const Navbar = () => {
@@ -73,7 +73,7 @@ const Navbar = () => {
 
       {/* Mobile sidebar overlay */}
       <div
-        className={`fixed inset-0 z-[55] bg-background/40 backdrop-blur-sm transition-opacity duration-300 ${
+        className={`fixed inset-0 z-[55] bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setIsOpen(false)}
@@ -81,40 +81,48 @@ const Navbar = () => {
 
       {/* Mobile sidebar */}
       <div
-        className={`fixed top-0 right-0 z-[56] h-full w-72 bg-card/90 backdrop-blur-2xl border-l border-border/50 shadow-2xl transition-transform duration-300 ease-out ${
+        className={`fixed top-0 right-0 z-[56] h-full w-[21rem] bg-background/90 backdrop-blur-2xl border-l border-border/60 shadow-[0_20px_60px_-12px_rgba(0,0,0,0.55)] transition-transform duration-300 ease-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-end px-6 pt-5">
+        <div className="flex items-center justify-between px-6 pt-6">
+          <p className="text-xs tracking-[0.16em] uppercase text-muted-foreground font-semibold">
+            Navigation
+          </p>
           <button
             onClick={() => setIsOpen(false)}
-            className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
+            className="p-2 rounded-full text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
             aria-label="Close menu"
           >
-            <X size={22} />
+            <X size={18} />
           </button>
         </div>
-        <div className="flex flex-col flex-1 overflow-y-auto pt-4 px-8 pb-8" style={{ height: 'calc(100% - 60px)' }}>
-          <ul className="flex flex-col gap-2">
+        <div className="flex flex-col flex-1 overflow-y-auto pt-6 px-6 pb-6" style={{ height: "calc(100% - 64px)" }}>
+          <ul className="flex flex-col gap-3">
             {navLinks.map((link, i) => (
               <li key={link.href}>
                 <a
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-3 py-3 px-4 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300 text-base font-medium"
+                  className="group flex items-center justify-between py-3.5 px-4 rounded-xl border border-transparent bg-muted/20 text-muted-foreground hover:text-foreground hover:bg-muted/100 transition-all duration-300 text-base font-medium"
                   style={{ transitionDelay: isOpen ? `${i * 50}ms` : "0ms" }}
                 >
-                  <span className="opacity-85">{link.icon}</span>
-                  {link.label}
+                  <span className="flex items-center gap-3">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-background/80 border border-border/60 text-primary">
+                      {link.icon}
+                    </span>
+                    {link.label}
+                  </span>
+                  <ArrowUpRight size={15} className="opacity-0 -translate-y-0.5 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0" />
                 </a>
               </li>
             ))}
           </ul>
 
-          <div className="mt-auto">
+          <div className="mt-auto pt-6">
             <a
               href="/resume.pdf"
-              className="inline-flex w-full items-center justify-center gap-2 border border-primary text-primary px-4 py-3 rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 font-semibold"
+              className="inline-flex w-full items-center justify-center gap-2 border border-primary/60 bg-primary/5 text-primary px-4 py-3.5 rounded-xl hover:bg-primary hover:text-primary-foreground transition-all duration-300 font-semibold"
             >
               <FileText size={16} />
               {t.nav.resume}
