@@ -1,21 +1,32 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Sun, Moon, Globe } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useLang } from "@/contexts/LangContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAtTop, setIsAtTop] = useState(true);
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== "undefined") {
       return document.documentElement.classList.contains("dark");
     }
     return false;
   });
-  const { lang, setLang, t } = useLang();
+  const { t } = useLang();
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);
     document.documentElement.classList.toggle("light", !isDark);
   }, [isDark]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsAtTop(window.scrollY <= 2);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Prevent body scroll when sidebar is open
   useEffect(() => {
@@ -33,76 +44,33 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur-xl border-b border-border/50">
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          !isAtTop || isOpen
+            ? "bg-background/80 backdrop-blur-xl border-b border-border/50"
+            : "bg-transparent border-b border-transparent"
+        }`}
+      >
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="#" className="font-mono text-primary font-bold text-lg tracking-tight">
-            {"<Dev Portfolio />"}
+          <a
+            href="#"
+            className="text-foreground font-semibold tracking-[0.08em] uppercase text-sm md:text-base"
+          >
+            Portfolio
           </a>
-
-          {/* Desktop */}
-          <div className="hidden md:flex items-center gap-6">
-            <ul className="flex items-center gap-7">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <a
-              href="/resume.pdf"
-              className="text-sm border border-primary text-primary px-4 py-2 rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-            >
-              {t.nav.resume}
-            </a>
-            <button
-              onClick={() => setLang(lang === "en" ? "mm" : "en")}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-muted-foreground hover:text-primary hover:bg-secondary transition-all duration-300"
-            >
-              <Globe size={14} />
-              {lang === "en" ? "MM" : "EN"}
-            </button>
-            <button
-              onClick={() => setIsDark(!isDark)}
-              className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-secondary transition-all duration-300"
-              aria-label="Toggle theme"
-            >
-              {isDark ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
-          </div>
-
-          {/* Mobile controls */}
-          <div className="flex items-center gap-2 md:hidden">
-            <button
-              onClick={() => setLang(lang === "en" ? "mm" : "en")}
-              className="p-2 rounded-lg text-muted-foreground hover:text-primary transition-all duration-300"
-            >
-              <Globe size={16} />
-            </button>
-            <button
-              onClick={() => setIsDark(!isDark)}
-              className="p-2 rounded-lg text-muted-foreground hover:text-primary transition-all duration-300"
-              aria-label="Toggle theme"
-            >
-              {isDark ? <Sun size={16} /> : <Moon size={16} />}
-            </button>
-            <button
-              className="text-foreground p-1 relative z-[60]"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {isOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
-          </div>
+          <button
+            className="relative z-[60] h-11 w-16 rounded-full border border-border/50 bg-background/85 backdrop-blur-xl text-foreground flex items-center justify-center hover:bg-background transition-all duration-300"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+          >
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </nav>
 
       {/* Mobile sidebar overlay */}
       <div
-        className={`fixed inset-0 z-[55] bg-background/40 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 z-[55] bg-background/40 backdrop-blur-sm transition-opacity duration-300 ${
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setIsOpen(false)}
@@ -110,7 +78,7 @@ const Navbar = () => {
 
       {/* Mobile sidebar */}
       <div
-        className={`fixed top-0 right-0 z-[56] h-full w-72 bg-card/90 backdrop-blur-2xl border-l border-border/50 shadow-2xl transition-transform duration-300 ease-out md:hidden ${
+        className={`fixed top-0 right-0 z-[56] h-full w-72 bg-card/90 backdrop-blur-2xl border-l border-border/50 shadow-2xl transition-transform duration-300 ease-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
