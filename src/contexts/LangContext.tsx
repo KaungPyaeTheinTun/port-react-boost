@@ -47,7 +47,7 @@ const translations = {
       errorLength: "One or more fields exceed the maximum length.",
       errorGeneric: "Something went wrong. Please try again later.",
     },
-    footer: { builtWith: "Built with React & Tailwind CSS" },
+    footer: { builtWith: "©Copyright 2023 Kaung Pyae Thein Tun. All rights reserved." },
   },
   mm: {
     nav: { about: "အကြောင်း", skills: "ကျွမ်းကျင်မှု", projects: "ပရောဂျက်", experience: "အတွေ့အကြုံ", contact: "ဆက်သွယ်ရန်", resume: "အကျဉ်းချုပ်" },
@@ -93,7 +93,7 @@ const translations = {
       errorLength: "အကွက်တစ်ခု သို့မဟုတ် တစ်ခုထက်ပိုသော အကွက်များ အရှည်ဆုံး ကျော်လွန်နေပါသည်။",
       errorGeneric: "တစ်ခုခု မှားသွားပါတယ်။ နောက်မှ ပြန်ကြိုးစားပါ။",
     },
-    footer: { builtWith: "React နှင့် Tailwind CSS ဖြင့် တည်ဆောက်ထားသည်" },
+    footer: { builtWith: "©Copyright 2023 Kaung Pyae Thein Tun. All rights reserved." },
   },
 };
 
