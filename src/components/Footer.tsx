@@ -43,7 +43,7 @@ const Footer = () => {
           ))}
         </div>
         <p className="text-xs text-muted-foreground flex items-center gap-1.5">
-          {t.footer.builtWith} <Heart size={12} className="text-primary" />
+          {t.footer.builtWith}
         </p>
       </div>
     </footer>
