@@ -8,10 +8,10 @@ const translations = {
     hero: {
       greeting: "Hi, my name is",
       name: "Kaung Pyae Thein Tun.",
-      tagline: "I build things for the web.",
+      tagline: "Building AI-powered tools for real-world impact.",
       description: "I'm a full-stack developer specializing in building exceptional digital experiences. Currently focused on building accessible, human-centered products with modern technologies.",
       viewWork: "View My Work",
-      getInTouch: "Get In Touch",
+      resume: "Download Resume",
     },
     about: {
       title: "About Me",

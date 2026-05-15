@@ -56,7 +56,7 @@ const ExperienceSection = () => {
           >
             {experiences.map((exp, i) => (
               <button
-                key={exp.company}
+                key={`${exp.company}-${i}`} 
                 onClick={() => setActive(i)}
                 className={`px-5 py-3 text-sm text-left whitespace-nowrap transition-all duration-300
                   ${active === i

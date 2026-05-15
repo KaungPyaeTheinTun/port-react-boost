@@ -79,7 +79,7 @@ const ProjectsSection = () => {
                     height={512}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
+                  <div className="absolute inset-0 from-card to-transparent" />
                   <div className="absolute top-3 right-3 flex gap-2">
                     <Tooltip>
                       <TooltipTrigger asChild>
