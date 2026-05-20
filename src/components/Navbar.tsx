@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ArrowUpRight, BriefcaseBusiness, FileText, FolderKanban, Mail, Menu, Sparkles, User, X } from "lucide-react";
+import { ArrowUpRight, BriefcaseBusiness, FileText, FolderKanban, Mail, Menu, Sparkles, User, X, Languages } from "lucide-react"; // ADDED: Languages icon
 import { useLang } from "@/contexts/LangContext";
 
 const Navbar = () => {
@@ -11,7 +11,9 @@ const Navbar = () => {
     }
     return false;
   });
-  const { t } = useLang();
+  
+  // UPDATED: Destructure lang and setLang along with t
+  const { t, lang, setLang } = useLang();
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);
@@ -58,16 +60,46 @@ const Navbar = () => {
           >
             Portfolio
           </a>
-          <button
-            className="relative z-[60] h-11 px-4 rounded-full border border-border/50 bg-background/90 backdrop-blur-xl text-foreground flex items-center gap-2 hover:bg-background transition-all duration-300"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-          >
-            <span className="text-[11px] font-semibold tracking-[0.08em] uppercase">
-              Menu
-            </span>
-            {isOpen ? <X size={16} /> : <Menu size={16} />}
-          </button>
+          
+          {/* Group wrapper to keep Language and Menu aligned horizontally */}
+          <div className="flex items-center gap-3">
+            
+            {/* ADDED: Clean Language Switcher Capsule Button */}
+            <div className="h-11 px-1.5 rounded-full border border-border/50 bg-background/90 backdrop-blur-xl flex items-center gap-1.5">
+              <button
+                onClick={() => setLang("en")}
+                className={`h-8 w-8 rounded-full text-[10px] font-bold tracking-wider uppercase flex items-center justify-center transition-all duration-200 ${
+                  lang === "en"
+                    ? "bg-foreground text-background shadow-sm"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                }`}
+              >
+                EN
+              </button>
+              <button
+                onClick={() => setLang("mm")}
+                className={`h-8 w-8 rounded-full text-[10px] font-bold tracking-wider uppercase flex items-center justify-center transition-all duration-200 ${
+                  lang === "mm"
+                    ? "bg-foreground text-background shadow-sm"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                }`}
+              >
+                MM
+              </button>
+            </div>
+
+            <button
+              className="relative z-[60] h-11 px-4 rounded-full border border-border/50 bg-background/90 backdrop-blur-xl text-foreground flex items-center gap-2 hover:bg-background transition-all duration-300"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+            >
+              <span className="text-[11px] font-semibold tracking-[0.08em] uppercase">
+                Menu
+              </span>
+              {isOpen ? <X size={16} /> : <Menu size={16} />}
+            </button>
+          </div>
+
         </div>
       </nav>
 
