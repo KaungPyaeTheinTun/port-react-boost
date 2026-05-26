@@ -58,7 +58,7 @@ export function TechGrid() {
                   className="flex flex-col items-center justify-center gap-2 p-4 h-[100px] md:h-[120px] w-[100px] md:w-[120px] shrink-0 relative group cursor-pointer"
                 >
                   {/* Hover background highlight overlay */}
-                  <div className="absolute inset-0 bg-neutral-50/0 group-hover:bg-neutral-50/60 transition-colors duration-200" />
+                  <div className="absolute inset-0 bg-neutral-50/0 group-hover:bg-neutral-50/60 group-hover:rounded-2xl transition-colors duration-200" />
 
                   {/* Brand Color Icon Mask Layer */}
                   <div className="w-10 h-10 relative flex items-center justify-center transition-transform duration-300 group-hover:scale-110 z-10 select-none pointer-events-none">
