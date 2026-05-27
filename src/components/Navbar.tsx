@@ -1,24 +1,12 @@
 import { useState, useEffect } from "react";
-import { ArrowUpRight, BriefcaseBusiness, FileText, FolderKanban, Mail, Menu, Sparkles, User, X, Languages } from "lucide-react"; // ADDED: Languages icon
+import { ArrowUpRight, FileText, X, Linkedin, Github } from "lucide-react";
 import { useLang } from "@/contexts/LangContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAtTop, setIsAtTop] = useState(true);
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window !== "undefined") {
-      return document.documentElement.classList.contains("dark");
-    }
-    return false;
-  });
-  
-  // UPDATED: Destructure lang and setLang along with t
-  const { t, lang, setLang } = useLang();
 
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-    document.documentElement.classList.toggle("light", !isDark);
-  }, [isDark]);
+  const { t, lang, setLang } = useLang();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,136 +18,230 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Prevent body scroll when sidebar is open
+  // Prevent background page content from shifting or scrolling behind the overlay
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.touchAction = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.touchAction = "";
+    };
   }, [isOpen]);
 
   const navLinks = [
-    { label: t.nav.about, href: "#about", icon: <User size={16} /> },
-    { label: t.nav.skills, href: "#skills", icon: <Sparkles size={16} /> },
-    { label: t.nav.projects, href: "#projects", icon: <FolderKanban size={16} /> },
-    { label: t.nav.experience, href: "#experience", icon: <BriefcaseBusiness size={16} /> },
-    { label: t.nav.contact, href: "#contact", icon: <Mail size={16} /> },
+    { label: t.nav.about, href: "#about", num: "01" },
+    { label: t.nav.skills, href: "#skills", num: "02" },
+    { label: t.nav.projects, href: "#projects", num: "03" },
+    { label: t.nav.experience, href: "#experience", num: "04" },
+    { label: t.nav.contact, href: "#contact", num: "05" },
   ];
 
   return (
     <>
+      {/* HEADER NAV ROW BAR */}
+      {/* MOBILE STABILITY FIXES APPLIED HERE:
+        - Added a fixed height: h-16 (64px) instead of fluid py-3/py-5. This prevents height shaking.
+        - transform translate-z-0: Forces mobile browsers to process the nav on its own GPU layer.
+        - isolate: Keeps the stacking context isolated from background page momentum scroll artifacts.
+      */}
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          !isAtTop || isOpen
-            ? "bg-background/80 backdrop-blur-xl border-b border-border/50"
+        className={`fixed top-0 left-0 right-0 h-16 z-50 flex items-center transition-colors duration-300 isolate transform translate-z-0 ${
+          !isAtTop && !isOpen
+            ? "bg-white/90 dark:bg-black/90 backdrop-blur-xl border-b border-neutral-200/40 dark:border-neutral-800/40"
             : "bg-transparent border-b border-transparent"
         }`}
+        style={{
+          WebkitTransform:
+            "translate3d(0,0,0)" /* Deep iOS Safari Hardware Lock */,
+          WebkitBackfaceVisibility: "hidden",
+        }}
       >
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto w-full px-6 sm:px-10 lg:px-12 flex items-center justify-between">
           <a
             href="#"
-            className="text-foreground font-semibold tracking-[0.08em] uppercase text-sm md:text-base"
+            className="text-neutral-900 dark:text-white font-display font-bold tracking-tight text-xl transition-opacity hover:opacity-80"
           >
-            Portfolio
+            PORTFOLIO
           </a>
-          
-          {/* Group wrapper to keep Language and Menu aligned horizontally */}
-          <div className="flex items-center gap-3">
-            
-            {/* ADDED: Clean Language Switcher Capsule Button */}
-            <div className="h-11 px-1.5 rounded-full border border-border/50 bg-background/90 backdrop-blur-xl flex items-center gap-1.5">
+
+          <div className="flex items-center gap-4">
+            {/* Embedded Language Capsule Toggle Frame */}
+            <div className="h-10 px-1 rounded-full border border-neutral-200/60 dark:border-neutral-800/60 bg-white/60 dark:bg-black/60 flex items-center gap-1 z-50">
               <button
                 onClick={() => setLang("en")}
-                className={`h-8 w-8 rounded-full text-[10px] font-bold tracking-wider uppercase flex items-center justify-center transition-all duration-200 ${
+                className={`h-8 px-3 rounded-full text-[10px] font-bold tracking-wider uppercase transition-all duration-300 ${
                   lang === "en"
-                    ? "bg-foreground text-background shadow-sm"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                    ? "bg-neutral-900 text-white dark:bg-white dark:text-black shadow-sm"
+                    : "text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
                 }`}
               >
                 EN
               </button>
               <button
                 onClick={() => setLang("mm")}
-                className={`h-8 w-8 rounded-full text-[10px] font-bold tracking-wider uppercase flex items-center justify-center transition-all duration-200 ${
+                className={`h-8 px-3 rounded-full text-[10px] font-bold tracking-wider uppercase transition-all duration-300 ${
                   lang === "mm"
-                    ? "bg-foreground text-background shadow-sm"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                    ? "bg-neutral-900 text-white dark:bg-white dark:text-black shadow-sm"
+                    : "text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
                 }`}
               >
                 MM
               </button>
             </div>
 
+            {/* HAMBURGER TRIGGER BUTTON CONTROLLER */}
             <button
-              className="relative z-[60] h-11 px-4 rounded-full border border-border/50 bg-background/90 backdrop-blur-xl text-foreground flex items-center gap-2 hover:bg-background transition-all duration-300"
+              className="relative z-50 h-10 px-5 rounded-full border border-neutral-200/60 dark:border-neutral-800/60 bg-neutral-900 text-white dark:bg-white dark:text-black flex items-center gap-2.5 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               onClick={() => setIsOpen(!isOpen)}
-              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-label="Toggle Navigation Screen Menu"
             >
-              <span className="text-[11px] font-semibold tracking-[0.08em] uppercase">
-                Menu
+              <span className="text-[11px] font-bold tracking-[0.1em] uppercase">
+                {isOpen ? "Close" : "Menu"}
               </span>
-              {isOpen ? <X size={16} /> : <Menu size={16} />}
+              <div className="relative w-3.5 h-3.5 flex items-center justify-center">
+                <span
+                  className={`absolute w-3.5 h-0.5 bg-current transition-transform duration-300 ${isOpen ? "rotate-45" : "-translate-y-1"}`}
+                />
+                <span
+                  className={`absolute w-3.5 h-0.5 bg-current transition-transform duration-300 ${isOpen ? "-rotate-45" : "translate-y-1"}`}
+                />
+              </div>
             </button>
           </div>
-
         </div>
       </nav>
 
-      {/* Mobile sidebar overlay */}
+      {/* FULL VIEWPORT CURTAIN DROP WINDOW OVERLAY */}
       <div
-        className={`fixed inset-0 z-[55] bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${
-          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        className={`fixed top-0 left-0 w-full h-[100dvh] z-40 bg-[#F4F3EF] dark:bg-[#121210] transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)] flex flex-col justify-between p-6 sm:p-12 md:p-16 transform translate-z-0 ${
+          isOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
         }`}
-        onClick={() => setIsOpen(false)}
-      />
-
-      {/* Mobile sidebar */}
-      <div
-        className={`fixed top-0 right-0 z-[56] h-full w-[21rem] bg-background/90 backdrop-blur-2xl border-l border-border/60 shadow-[0_20px_60px_-12px_rgba(0,0,0,0.55)] transition-transform duration-300 ease-out ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        style={{
+          WebkitTransform: isOpen
+            ? "translate3d(0,0,0)"
+            : "translate3d(0,-100%,0)",
+        }}
       >
-        <div className="flex items-center justify-between px-6 pt-6">
-          <p className="text-xs tracking-[0.16em] uppercase text-muted-foreground font-semibold">
-            Navigation
-          </p>
-          <button
-            onClick={() => setIsOpen(false)}
-            className="p-2 rounded-full text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
-            aria-label="Close menu"
-          >
-            <X size={18} />
-          </button>
-        </div>
-        <div className="flex flex-col flex-1 overflow-y-auto pt-6 px-6 pb-6" style={{ height: "calc(100% - 64px)" }}>
-          <ul className="flex flex-col gap-3">
-            {navLinks.map((link, i) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="group flex items-center justify-between py-3.5 px-4 rounded-xl border border-transparent bg-muted/20 text-muted-foreground hover:text-foreground hover:bg-muted/100 transition-all duration-300 text-base font-medium"
-                  style={{ transitionDelay: isOpen ? `${i * 50}ms` : "0ms" }}
-                >
-                  <span className="flex items-center gap-3">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-background/80 border border-border/60 text-primary">
-                      {link.icon}
-                    </span>
-                    {link.label}
-                  </span>
-                  <ArrowUpRight size={15} className="opacity-0 -translate-y-0.5 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0" />
-                </a>
-              </li>
-            ))}
-          </ul>
+        <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03] pointer-events-none bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px]" />
 
-          <div className="mt-auto pt-6">
-            <a
-              href="/resume.pdf"
-              className="inline-flex w-full items-center justify-center gap-2 border border-primary/60 bg-primary/5 text-primary px-4 py-3.5 rounded-xl hover:bg-primary hover:text-primary-foreground transition-all duration-300 font-semibold"
-            >
-              <FileText size={16} />
-              {t.nav.resume}
-            </a>
+        {/* Header Top Spacer Area */}
+        <div className="w-full h-16 sm:h-20 shrink-0" />
+
+        {/* Core Main Center Body Container */}
+        <div className="max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-6 items-center my-auto relative z-10 overflow-y-auto max-h-[calc(100dvh-12rem)] no-scrollbar">
+          <nav className="md:col-span-7 flex flex-col">
+            <span className="text-[11px] tracking-[0.2em] uppercase font-bold text-neutral-400 dark:text-neutral-500 mb-4 block">
+              Navigation Menu
+            </span>
+            <ul className="flex flex-col space-y-2 sm:space-y-4">
+              {navLinks.map((link, i) => (
+                <li key={link.href} className="overflow-hidden">
+                  <a
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`group flex items-baseline gap-4 text-3xl sm:text-5xl lg:text-6xl font-display font-semibold tracking-tight text-neutral-900 dark:text-white hover:text-neutral-500 dark:hover:text-neutral-400 transition-colors duration-300 transition-all transform ${
+                      isOpen
+                        ? "translate-y-0 opacity-100"
+                        : "translate-y-12 opacity-0"
+                    }`}
+                    style={{
+                      transitionDuration: "600ms",
+                      transitionDelay: isOpen ? `${150 + i * 60}ms` : "0ms",
+                    }}
+                  >
+                    <span className="text-xs sm:text-sm font-mono font-bold text-neutral-400/70 dark:text-neutral-600/70">
+                      {link.num}.
+                    </span>
+                    <span>{link.label}</span>
+                    <ArrowUpRight
+                      className="inline-block transform -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 group-hover:-translate-y-1 transition-all duration-300 text-neutral-400"
+                      size={24}
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div
+            className={`md:col-span-5 md:pl-12 flex flex-col space-y-6 border-t md:border-t-0 md:border-l border-neutral-200 dark:border-neutral-800 pt-6 md:pt-0 transition-all transform duration-700 delay-500 ${
+              isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+          >
+            <div>
+              <span className="text-[10px] tracking-[0.2em] uppercase font-bold text-neutral-400 dark:text-neutral-500 block mb-2">
+                Quick Download
+              </span>
+              <a
+                href="/resume.pdf"
+                className="group flex items-center justify-between p-4 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/60 hover:border-neutral-400 dark:hover:border-neutral-600 shadow-sm hover:shadow-md transition-all duration-300"
+              >
+                <div className="flex items-center gap-3.5">
+                  <div className="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-neutral-600 dark:text-neutral-300">
+                    <FileText size={18} />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-sm font-bold text-neutral-900 dark:text-white">
+                      {t.nav.resume || "Curriculum Vitae"}
+                    </p>
+                    <p className="text-xs text-neutral-400">PDF (1.2 MB)</p>
+                  </div>
+                </div>
+                <ArrowUpRight
+                  size={16}
+                  className="text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors"
+                />
+              </a>
+            </div>
+
+            <div>
+              <span className="text-[10px] tracking-[0.2em] uppercase font-bold text-neutral-400 dark:text-neutral-500 block mb-3">
+                Connect
+              </span>
+              <div className="flex gap-3 h-11 items-center">
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-center gap-0 max-w-[44px] hover:max-w-[140px] h-11 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/60 text-neutral-700 dark:text-neutral-300 hover:text-white hover:bg-[#0A66C2] dark:hover:bg-[#0A66C2] shadow-sm overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
+                >
+                  <div className="min-w-[42px] h-full flex items-center justify-center">
+                    <Linkedin size={18} />
+                  </div>
+                  <span className="text-xs font-bold tracking-wide pr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                    LinkedIn
+                  </span>
+                </a>
+
+                <a
+                  href="https://github.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-center gap-0 max-w-[44px] hover:max-w-[130px] h-11 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/60 text-neutral-700 dark:text-neutral-300 hover:text-white hover:bg-black dark:hover:bg-neutral-800 shadow-sm overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
+                >
+                  <div className="min-w-[42px] h-full flex items-center justify-center">
+                    <Github size={18} />
+                  </div>
+                  <span className="text-xs font-bold tracking-wide pr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                    GitHub
+                  </span>
+                </a>
+              </div>
+            </div>
           </div>
+        </div>
+
+        {/* Bottom Window Subtitle Brand Meta Row info */}
+        <div className="max-w-5xl mx-auto w-full flex flex-col sm:flex-row items-center justify-between border-t border-neutral-200/60 dark:border-neutral-800/60 pt-4 text-[11px] text-neutral-400 dark:text-neutral-500 font-medium z-10 shrink-0">
+          <p>
+            © {new Date().getFullYear()} KaungPyaeTheinTun. All rights reserved.
+          </p>
+          <p className="mt-1 sm:mt-0 tracking-wide">Yangon, Myanmar</p>
         </div>
       </div>
     </>
