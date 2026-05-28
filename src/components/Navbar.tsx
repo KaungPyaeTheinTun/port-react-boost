@@ -70,23 +70,32 @@ const Navbar = () => {
           </a>
 
           <div className="flex items-center gap-4">
-            {/* Embedded Language Capsule Toggle Frame */}
-            <div className="h-10 px-1 rounded-full border border-neutral-200/60 dark:border-neutral-800/60 bg-white/60 dark:bg-black/60 flex items-center gap-1 z-50">
+            <div className="relative h-10 px-1 rounded-full border border-neutral-200/60 dark:border-neutral-800/60 bg-white/60 dark:bg-black/60 flex items-center z-50 overflow-hidden">
+
+              <div
+                className={`absolute h-8 rounded-full bg-neutral-900 dark:bg-white shadow-sm transition-transform duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] ${
+                  lang === "en"
+                    ? "w-[43px] translate-x-0"
+                    : "w-[45px] translate-x-[41px]"
+                }`}
+              />
+
               <button
                 onClick={() => setLang("en")}
-                className={`h-8 px-3 rounded-full text-[10px] font-bold tracking-wider uppercase transition-all duration-300 ${
+                className={`relative h-8 px-3 rounded-full text-[10px] font-bold tracking-wider uppercase z-10 transition-colors duration-300 ${
                   lang === "en"
-                    ? "bg-neutral-900 text-white dark:bg-white dark:text-black shadow-sm"
+                    ? "text-white dark:text-black"
                     : "text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
                 }`}
               >
                 EN
               </button>
+
               <button
                 onClick={() => setLang("mm")}
-                className={`h-8 px-3 rounded-full text-[10px] font-bold tracking-wider uppercase transition-all duration-300 ${
+                className={`relative h-8 px-3 rounded-full text-[10px] font-bold tracking-wider uppercase z-10 transition-colors duration-300 ${
                   lang === "mm"
-                    ? "bg-neutral-900 text-white dark:bg-white dark:text-black shadow-sm"
+                    ? "text-white dark:text-black"
                     : "text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
                 }`}
               >
@@ -96,11 +105,11 @@ const Navbar = () => {
 
             {/* HAMBURGER TRIGGER BUTTON CONTROLLER */}
             <button
-              className="relative z-50 h-10 px-5 rounded-full border border-neutral-200/60 dark:border-neutral-800/60 bg-neutral-900 text-white dark:bg-white dark:text-black flex items-center gap-2.5 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="relative z-50 h-10 px-5 rounded-full border border-neutral-200/60 dark:border-neutral-800/60 bg-white text-black dark:bg-white dark:text-black flex items-center gap-2.5 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle Navigation Screen Menu"
             >
-              <span className="text-[11px] font-bold tracking-[0.1em] uppercase">
+              <span className="text-[11px] font-bold tracking-[0.1em] uppercase hidden sm:inline-block">
                 {isOpen ? "Close" : "Menu"}
               </span>
               <div className="relative w-3.5 h-3.5 flex items-center justify-center">
