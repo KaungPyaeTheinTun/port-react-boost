@@ -1,5 +1,13 @@
 import { useState, useEffect } from "react";
-import { ArrowUpRight, FileText, X, Linkedin, Github } from "lucide-react";
+// Replaced ArrowUpRight with ArrowUp for the scroll button layout
+import {
+  ArrowUp,
+  ArrowUpRight,
+  FileText,
+  X,
+  Linkedin,
+  Github,
+} from "lucide-react";
 import { useLang } from "@/contexts/LangContext";
 
 const Navbar = () => {
@@ -10,7 +18,8 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsAtTop(window.scrollY <= 2);
+      // Button will show once the user scrolls down past 100px
+      setIsAtTop(window.scrollY <= 100);
     };
 
     handleScroll();
@@ -33,6 +42,14 @@ const Navbar = () => {
     };
   }, [isOpen]);
 
+  // Smooth click scroll mechanism engine handler
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   const navLinks = [
     { label: t.nav.about, href: "#about", num: "01" },
     { label: t.nav.skills, href: "#skills", num: "02" },
@@ -43,12 +60,20 @@ const Navbar = () => {
 
   return (
     <>
+      {/* FLOATING SCROLL TO TOP FLOATER ACTION BUTTON */}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full border border-neutral-200/60 dark:border-neutral-800/60 bg-white/80 dark:bg-black/80 text-black dark:text-white backdrop-blur-md flex items-center justify-center shadow-md transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] hover:scale-110 hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black ${
+          isAtTop || isOpen
+            ? "opacity-0 translate-y-10 pointer-events-none"
+            : "opacity-100 translate-y-0"
+        }`}
+        aria-label="Scroll back to top of portfolio page"
+      >
+        <ArrowUp size={18} className="animate-pulse" />
+      </button>
+
       {/* HEADER NAV ROW BAR */}
-      {/* MOBILE STABILITY FIXES APPLIED HERE:
-        - Added a fixed height: h-16 (64px) instead of fluid py-3/py-5. This prevents height shaking.
-        - transform translate-z-0: Forces mobile browsers to process the nav on its own GPU layer.
-        - isolate: Keeps the stacking context isolated from background page momentum scroll artifacts.
-      */}
       <nav
         className={`fixed top-0 left-0 right-0 h-16 z-50 flex items-center transition-colors duration-300 isolate transform translate-z-0 ${
           !isAtTop && !isOpen
@@ -71,7 +96,6 @@ const Navbar = () => {
 
           <div className="flex items-center gap-4">
             <div className="relative h-10 px-1 rounded-full border border-neutral-200/60 dark:border-neutral-800/60 bg-white/60 dark:bg-black/60 flex items-center z-50 overflow-hidden">
-
               <div
                 className={`absolute h-8 rounded-full bg-neutral-900 dark:bg-white shadow-sm transition-transform duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] ${
                   lang === "en"
