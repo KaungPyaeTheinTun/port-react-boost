@@ -42,7 +42,9 @@ const ExperienceSection = () => {
 
   return (
     <section id="experience" className="section-padding bg-card/30" ref={ref}>
-      <div className={`max-w-4xl mx-auto transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+      <div
+        className={`max-w-4xl mx-auto transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+      >
         <h2 className="flex items-center gap-3 text-2xl md:text-3xl font-bold text-foreground mb-10">
           <span className="text-primary text-lg font-mono">04.</span>
           {t.experience.title}
@@ -50,18 +52,20 @@ const ExperienceSection = () => {
         </h2>
 
         <div className="flex flex-col md:flex-row gap-6">
+          {/* Tabs Sidebar */}
           <div
             className={`flex md:flex-col overflow-x-auto md:overflow-visible border-b md:border-b-0 md:border-l border-border transition-all duration-500 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"}`}
             style={{ transitionDelay: "200ms" }}
           >
             {experiences.map((exp, i) => (
               <button
-                key={`${exp.company}-${i}`} 
+                key={`${exp.company}-${i}`}
                 onClick={() => setActive(i)}
                 className={`px-5 py-3 text-sm text-left whitespace-nowrap transition-all duration-300
-                  ${active === i
-                    ? "text-primary border-b-2 md:border-b-0 md:border-l-2 border-primary bg-primary/5 font-bold"
-                    : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                  ${
+                    active === i
+                      ? "text-primary border-b-2 md:border-b-0 md:border-l-2 border-primary bg-primary/5 font-bold"
+                      : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
                   }`}
               >
                 {exp.company}
@@ -69,20 +73,27 @@ const ExperienceSection = () => {
             ))}
           </div>
 
-          <div key={active} className="min-h-[280px] animate-fade-up">
+          {/* Details Content Panel */}
+          {/* FIXED: Removed key={active} here to prevent total DOM unmounting */}
+          <div className="flex-1 min-h-[280px]">
             <h3 className="text-lg font-bold text-foreground">
               {experiences[active].role}{" "}
-              <span className="text-primary">@ {experiences[active].company}</span>
+              <span className="text-primary">
+                @ {experiences[active].company}
+              </span>
             </h3>
             <p className="text-sm text-muted-foreground mb-5 font-mono">
               {experiences[active].period}
             </p>
-            <ul className="space-y-3">
+
+            {/* FIXED: Placed unique key here so only the list re-renders smoothly */}
+            <ul key={active} className="space-y-3">
               {experiences[active].bullets.map((bullet, i) => (
                 <li
                   key={i}
                   className="flex gap-3 text-sm text-muted-foreground animate-fade-up"
-                  style={{ animationDelay: `${i * 100}ms`, opacity: 0 }}
+                  // FIXED: Removed opacity: 0 to let Tailwind/CSS handle entry state gracefully
+                  style={{ animationDelay: `${i * 100}ms` }}
                 >
                   <span className="text-primary mt-0.5 shrink-0">▹</span>
                   {bullet}
