@@ -8,9 +8,9 @@ const experiences = [
     role: "Senior Full-Stack Developer",
     period: "2026 — Present",
     bullets: [
-      "Lead a team of 5 engineers building a microservices architecture serving 2M+ users",
-      "Implemented CI/CD pipelines reducing deployment time by 60%",
-      "Architected a real-time notification system using WebSockets and Redis",
+      "Developed and maintained scalable full-stack web applications using ASP.NET, Laravel, React.js, and RESTful APIs, delivering high-quality business solutions.",
+      "Optimized application performance, database queries, and system workflows, improving response times and overall user experience.",
+      "Implemented secure authentication, role-based access control, and CI/CD deployment processes, enhancing system reliability and development efficiency.",
     ],
   },
   {
@@ -18,9 +18,9 @@ const experiences = [
     role: "Full-Stack Developer",
     period: "2025 — 2026",
     bullets: [
-      "Built the core product from scratch using React, Node.js, and PostgreSQL",
-      "Designed and implemented RESTful APIs consumed by web and mobile clients",
-      "Optimized database queries resulting in 40% faster page loads",
+      "Built and delivered full-stack web applications using PHP, Laravel, React.js, and RESTful APIs, supporting business-critical operations.",
+      "Collaborated with cross-functional teams to develop new features, troubleshoot issues, and improve application reliability.",
+      "Enhanced application performance through database optimization and code refactoring, resulting in faster page load times and improved efficiency.",
     ],
   },
   {
@@ -28,9 +28,9 @@ const experiences = [
     role: "Junior Developer",
     period: "2024 — 2025",
     bullets: [
-      "Developed responsive web applications for 10+ clients across various industries",
-      "Collaborated with designers to translate Figma mockups into pixel-perfect interfaces",
-      "Introduced automated testing practices increasing code coverage to 85%",
+      "Developed and maintained responsive web applications using modern frontend and backend technologies for multiple client projects.",
+      "Collaborated with senior developers and designers to transform UI/UX designs into functional, user-friendly interfaces.",
+      "Participated in debugging, testing, and performance optimization efforts, improving application stability and code quality.",
     ],
   },
 ];
