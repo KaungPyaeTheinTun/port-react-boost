@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
-// Replaced ArrowUpRight with ArrowUp for the scroll button layout
 import {
   ArrowUp,
   ArrowUpRight,
   FileText,
-  X,
   Linkedin,
   Github,
 } from "lucide-react";
@@ -18,7 +16,6 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Button will show once the user scrolls down past 100px
       setIsAtTop(window.scrollY <= 100);
     };
 
@@ -27,7 +24,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Prevent background page content from shifting or scrolling behind the overlay
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -42,7 +38,6 @@ const Navbar = () => {
     };
   }, [isOpen]);
 
-  // Smooth click scroll mechanism engine handler
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -60,10 +55,10 @@ const Navbar = () => {
 
   return (
     <>
-      {/* FLOATING SCROLL TO TOP FLOATER ACTION BUTTON */}
+      {/* FLOATING SCROLL TO TOP ACTION BUTTON */}
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full border border-neutral-200/60 dark:border-neutral-800/60 bg-white/80 dark:bg-black/80 text-black dark:text-white backdrop-blur-md flex items-center justify-center shadow-md transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] hover:scale-110 hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black ${
+        className={`fixed bottom-10 right-10 z-40 w-11 h-11 rounded-full border border-neutral-200/60 dark:border-neutral-800/60 bg-white/80 dark:bg-black/80 text-black dark:text-white backdrop-blur-md flex items-center justify-center shadow-md transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] hover:scale-110 hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-black ${
           isAtTop || isOpen
             ? "opacity-0 translate-y-10 pointer-events-none"
             : "opacity-100 translate-y-0"
@@ -75,18 +70,19 @@ const Navbar = () => {
 
       {/* HEADER NAV ROW BAR */}
       <nav
-        className={`fixed top-0 left-0 right-0 h-16 z-50 flex items-center transition-colors duration-300 isolate transform translate-z-0 ${
+        className={`fixed left-0 right-0 z-50 flex items-center transition-all duration-500 ease-[cubic-bezier(0.85,0,0.15,1)] ${
+          isOpen ? "top-4 md:top-6 h-24" : "top-0 h-20 bg-transparent"
+        } ${
           !isAtTop && !isOpen
             ? "bg-white/90 dark:bg-black/90 backdrop-blur-xl border-b border-neutral-200/40 dark:border-neutral-800/40"
-            : "bg-transparent border-b border-transparent"
+            : "border-b border-transparent"
         }`}
-        style={{
-          WebkitTransform:
-            "translate3d(0,0,0)" /* Deep iOS Safari Hardware Lock */,
-          WebkitBackfaceVisibility: "hidden",
-        }}
       >
-        <div className="max-w-7xl mx-auto w-full px-6 sm:px-10 lg:px-12 flex items-center justify-between">
+        <div
+          className={`max-w-7xl mx-auto w-full flex items-center justify-between z-50 transition-all duration-500 ease-[cubic-bezier(0.85,0,0.15,1)] ${
+            isOpen ? "px-10 sm:px-16 md:px-20" : "px-8 sm:px-12"
+          }`}
+        >
           <a
             href="#"
             className="text-neutral-900 dark:text-white font-display font-bold tracking-tight text-xl transition-opacity hover:opacity-80"
@@ -95,7 +91,8 @@ const Navbar = () => {
           </a>
 
           <div className="flex items-center gap-4">
-            <div className="relative h-10 px-1 rounded-full border border-neutral-200/60 dark:border-neutral-800/60 bg-white/60 dark:bg-black/60 flex items-center z-50 overflow-hidden">
+            {/* Language Switcher */}
+            <div className="relative h-10 px-1 rounded-full border border-neutral-200/60 dark:border-neutral-800/60 bg-white/60 dark:bg-black/60 flex items-center overflow-hidden">
               <div
                 className={`absolute h-8 rounded-full bg-neutral-900 dark:bg-white shadow-sm transition-transform duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] ${
                   lang === "en"
@@ -103,7 +100,6 @@ const Navbar = () => {
                     : "w-[45px] translate-x-[41px]"
                 }`}
               />
-
               <button
                 onClick={() => setLang("en")}
                 className={`relative h-8 px-3 rounded-full text-[10px] font-bold tracking-wider uppercase z-10 transition-colors duration-300 ${
@@ -114,7 +110,6 @@ const Navbar = () => {
               >
                 EN
               </button>
-
               <button
                 onClick={() => setLang("mm")}
                 className={`relative h-8 px-3 rounded-full text-[10px] font-bold tracking-wider uppercase z-10 transition-colors duration-300 ${
@@ -129,7 +124,7 @@ const Navbar = () => {
 
             {/* HAMBURGER TRIGGER BUTTON CONTROLLER */}
             <button
-              className="relative z-50 h-10 px-5 rounded-full border border-neutral-200/60 dark:border-neutral-800/60 bg-white text-black dark:bg-white dark:text-black flex items-center gap-2.5 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="h-10 px-5 rounded-full border border-neutral-200/60 dark:border-neutral-800/60 bg-white text-black dark:bg-white dark:text-black flex items-center gap-2.5 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle Navigation Screen Menu"
             >
@@ -149,42 +144,55 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* FULL VIEWPORT CURTAIN DROP WINDOW OVERLAY */}
+      {/* BACKDROP BLUR BEHIND THE CANVAS */}
       <div
-        className={`fixed top-0 left-0 w-full h-[100dvh] z-40 bg-[#F4F3EF] dark:bg-[#121210] transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)] flex flex-col justify-between p-6 sm:p-12 md:p-16 transform translate-z-0 ${
-          isOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+        className={`fixed inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-md z-40 transition-opacity duration-500 ${
+          isOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         }`}
-        style={{
-          WebkitTransform: isOpen
-            ? "translate3d(0,0,0)"
-            : "translate3d(0,-100%,0)",
-        }}
+        onClick={() => setIsOpen(false)}
+      />
+
+      {/* METAMASK-INSPIRED FULL VIEWPORT ROUNDED CANVAS WINDOW */}
+      <div
+        className={`fixed top-4 left-4 right-4 bottom-4 md:top-6 md:left-6 md:right-6 md:bottom-6 z-40 rounded-[2rem] md:rounded-[2.5rem] bg-white dark:bg-[#121210] border border-neutral-200/80 dark:border-neutral-800/80 shadow-2xl transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)] flex flex-col justify-between p-6 sm:p-12 md:p-16 transform overflow-hidden ${
+          isOpen
+            ? "translate-y-0 opacity-100 scale-100"
+            : "-translate-y-4 opacity-0 scale-[0.98] pointer-events-none"
+        }`}
       >
         <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03] pointer-events-none bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px]" />
 
-        {/* Header Top Spacer Area */}
-        <div className="w-full h-16 sm:h-20 shrink-0" />
+        {/* Top Spacer Header Buffer */}
+        <div className="w-full h-16 md:h-20 shrink-0" />
 
         {/* Core Main Center Body Container */}
-        <div className="max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-6 items-center my-auto relative z-10 overflow-y-auto max-h-[calc(100dvh-12rem)] no-scrollbar">
-          <nav className="md:col-span-7 flex flex-col">
-            <span className="text-[11px] tracking-[0.2em] uppercase font-bold text-neutral-400 dark:text-neutral-500 mb-4 block">
-              Navigation Menu
+        {/* CHANGED: Removed max-h-[calc(100dvh-16rem)] and overflow-y-auto to stop unnecessary scrolling on desktop */}
+        <div className="max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center flex-grow my-auto relative z-10 overflow-y-auto md:overflow-visible max-h-[calc(100dvh-12rem)] md:max-h-none no-scrollbar">
+          {/* Left Grid Content */}
+          <nav className="md:col-span-7 flex flex-col justify-center">
+            <span className="text-[11px] tracking-[0.2em] uppercase font-bold text-neutral-400 dark:text-neutral-500 mb-4 md:mb-6 block">
+              Explore Portfolio
             </span>
-            <ul className="flex flex-col space-y-2 sm:space-y-4">
+            <ul className="flex flex-col py-1">
               {navLinks.map((link, i) => (
-                <li key={link.href} className="overflow-hidden">
+                <li key={link.href} className="relative">
                   <a
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className={`group flex items-baseline gap-4 text-3xl sm:text-5xl lg:text-6xl font-display font-semibold tracking-tight text-neutral-900 dark:text-white hover:text-neutral-500 dark:hover:text-neutral-400 transition-colors duration-300 transition-all transform ${
+                    className={`group flex items-baseline gap-4 text-neutral-900 dark:text-white hover:text-neutral-500 dark:hover:text-neutral-400 transition-all duration-300 transform ${
                       isOpen
                         ? "translate-y-0 opacity-100"
                         : "translate-y-12 opacity-0"
+                    } ${
+                      lang === "mm"
+                        ? "text-xl sm:text-3xl lg:text-4xl font-normal py-2.5 my-0.5 leading-[1.5] tracking-wide"
+                        : "text-3xl sm:text-5xl lg:text-6xl font-display font-semibold py-1.5 md:py-2 tracking-tight"
                     }`}
                     style={{
                       transitionDuration: "600ms",
-                      transitionDelay: isOpen ? `${150 + i * 60}ms` : "0ms",
+                      transitionDelay: isOpen ? `${150 + i * 50}ms` : "0ms",
                     }}
                   >
                     <span className="text-xs sm:text-sm font-mono font-bold text-neutral-400/70 dark:text-neutral-600/70">
@@ -192,8 +200,9 @@ const Navbar = () => {
                     </span>
                     <span>{link.label}</span>
                     <ArrowUpRight
-                      className="inline-block transform -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 group-hover:-translate-y-1 transition-all duration-300 text-neutral-400"
-                      size={24}
+                      className={`inline-block transform -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 group-hover:-translate-y-1 transition-all duration-300 text-neutral-400 ${
+                        lang === "mm" ? "w-5 h-5 self-center" : "w-6 h-6"
+                      }`}
                     />
                   </a>
                 </li>
@@ -201,25 +210,28 @@ const Navbar = () => {
             </ul>
           </nav>
 
+          {/* Right Grid Content */}
           <div
-            className={`md:col-span-5 md:pl-12 flex flex-col space-y-6 border-t md:border-t-0 md:border-l border-neutral-200 dark:border-neutral-800 pt-6 md:pt-0 transition-all transform duration-700 delay-500 ${
+            className={`md:col-span-5 md:pl-12 flex flex-col space-y-8 border-t md:border-t-0 md:border-l border-neutral-200 dark:border-neutral-800 pt-8 md:pt-0 justify-center transition-all transform duration-700 delay-300 ${
               isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
             <div>
-              <span className="text-[10px] tracking-[0.2em] uppercase font-bold text-neutral-400 dark:text-neutral-500 block mb-2">
+              <span className="text-[10px] tracking-[0.2em] uppercase font-bold text-neutral-400 dark:text-neutral-500 block mb-3">
                 Quick Download
               </span>
               <a
                 href="/resume.pdf"
-                className="group flex items-center justify-between p-4 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/60 hover:border-neutral-400 dark:hover:border-neutral-600 shadow-sm hover:shadow-md transition-all duration-300"
+                className="group flex items-center justify-between p-4 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200/60 dark:border-neutral-800/60 hover:border-neutral-400 dark:hover:border-neutral-600 shadow-sm transition-all duration-300"
               >
                 <div className="flex items-center gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-neutral-600 dark:text-neutral-300">
+                  <div className="w-10 h-10 rounded-xl bg-white dark:bg-neutral-800 flex items-center justify-center text-neutral-600 dark:text-neutral-300 border border-neutral-200/40 dark:border-neutral-700">
                     <FileText size={18} />
                   </div>
                   <div className="text-left">
-                    <p className="text-sm font-bold text-neutral-900 dark:text-white">
+                    <p
+                      className={`text-neutral-900 dark:text-white leading-normal ${lang === "mm" ? "text-sm font-normal py-0.5" : "text-sm font-bold"}`}
+                    >
                       {t.nav.resume || "Curriculum Vitae"}
                     </p>
                     <p className="text-xs text-neutral-400">PDF (1.2 MB)</p>
@@ -241,7 +253,7 @@ const Navbar = () => {
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="group flex items-center gap-0 max-w-[44px] hover:max-w-[140px] h-11 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/60 text-neutral-700 dark:text-neutral-300 hover:text-white hover:bg-[#0A66C2] dark:hover:bg-[#0A66C2] shadow-sm overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
+                  className="group flex items-center gap-0 max-w-[44px] hover:max-w-[140px] h-11 rounded-xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/60 text-neutral-700 dark:text-neutral-300 hover:text-white hover:bg-[#0A66C2] dark:hover:bg-[#0A66C2] shadow-sm overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
                 >
                   <div className="min-w-[42px] h-full flex items-center justify-center">
                     <Linkedin size={18} />
@@ -255,7 +267,7 @@ const Navbar = () => {
                   href="https://github.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="group flex items-center gap-0 max-w-[44px] hover:max-w-[130px] h-11 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/60 text-neutral-700 dark:text-neutral-300 hover:text-white hover:bg-black dark:hover:bg-neutral-800 shadow-sm overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
+                  className="group flex items-center gap-0 max-w-[44px] hover:max-w-[130px] h-11 rounded-xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/60 text-neutral-700 dark:text-neutral-300 hover:text-white hover:bg-black dark:hover:bg-neutral-800 shadow-sm overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]"
                 >
                   <div className="min-w-[42px] h-full flex items-center justify-center">
                     <Github size={18} />
