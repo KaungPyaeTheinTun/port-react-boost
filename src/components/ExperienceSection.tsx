@@ -43,7 +43,7 @@ const ExperienceSection = () => {
   return (
     <section id="experience" className="section-padding bg-card/30" ref={ref}>
       <div
-        className={`max-w-4xl mx-auto transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+        className={`max-w-7xl mx-auto transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
       >
         <h2 className="flex items-center gap-3 text-2xl md:text-3xl font-bold text-foreground mb-10">
           <span className="text-primary text-lg font-mono">04.</span>

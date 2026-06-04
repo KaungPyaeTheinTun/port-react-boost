@@ -69,7 +69,7 @@ const HeroSection = () => {
         />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto w-full grid md:grid-cols-[1fr_minmax(320px,480px)] gap-12 md:gap-10 lg:gap-16 items-center md:items-end">
+      <div className="relative z-10 max-w-7xl mx-auto w-full grid md:grid-cols-[1fr_minmax(320px,480px)] gap-12 md:gap-10 lg:gap-16 items-center md:items-end">
         
         {/* Left Content Column */}
         <div className="-mt-10 md:-mt-28 lg:-mb-[-6rem]">

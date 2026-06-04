@@ -30,7 +30,7 @@ export function TechGrid() {
     >
       {/* Keeps internal content aligned matching the max width constraints of the HeroSection */}
       <div
-        className={`max-w-7xl mx-auto w-full px-6 sm:px-10 md:px-16 lg:px-12 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+        className={`w-full px-6 sm:px-10 md:px-16 lg:px-24 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
       >
 
         {/* Marquee Viewport Container - Expands full-width beneath title */}
