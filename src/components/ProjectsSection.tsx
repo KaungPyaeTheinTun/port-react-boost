@@ -21,7 +21,7 @@ const projects = [
     title: "Artwork Showcase",
     description:
       "A visually stunning artwork showcase website built with React and Tailwind CSS. Features a responsive design, smooth animations, and an intuitive user interface for displaying digital art.",
-    tech: ["React", "Tailwind", "Framer Motion", "Vite", "GitHub"],
+    tech: ["React", "TypeScript", "Tailwind", "Framer Motion", "Vite", "GitHub"],
     github: GITHUB_URL,
     live: "https://artwork-showcase.web.app/",
     image: artwork,
@@ -47,7 +47,7 @@ const projects = [
     title: "Support Ticket Portal",
     description:
       "A modern customer support ticketing portal with React frontend and Laravel API backend. Features Redis caching, Nginx reverse proxy, and Dockerized deployment for scalability.",
-    tech: ["React", "Laravel", "MySQL", "Redis", "Nginx", "Docker"],
+    tech: ["React", "TypeScript", "Tailwind", "Laravel", "MySQL", "Redis", "Nginx", "Docker"],
     github: GITHUB_URL,
     live: null,
     image: supportTicketImg,
