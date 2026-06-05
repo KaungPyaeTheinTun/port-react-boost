@@ -79,7 +79,7 @@ const Navbar = () => {
         }`}
       >
         <div
-          className={`max-w-7xl mx-auto w-full flex items-center justify-between z-50 transition-all duration-500 ease-[cubic-bezier(0.85,0,0.15,1)] ${
+          className={`w-full p-4 md:p-16 lg:p-24 flex items-center justify-between z-50 transition-all duration-500 ease-[cubic-bezier(0.85,0,0.15,1)] ${
             isOpen ? "px-10 sm:px-16 md:px-20" : "px-8 sm:px-12"
           }`}
         >

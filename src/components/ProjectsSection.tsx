@@ -76,7 +76,7 @@ const projects = [
       "A visually stunning artwork showcase website built with React and Tailwind CSS. Features a responsive design, smooth animations, and an intuitive user interface for displaying digital art.",
     tech: ["React", "Tailwind", "Framer Motion", "Vite", "GitHub"],
     github: GITHUB_URL,
-    live: null,
+    live: "https://artwork-showcase.web.app/",
     image: artwork,
   },
 ];
