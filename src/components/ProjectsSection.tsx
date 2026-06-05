@@ -18,22 +18,13 @@ const GITHUB_URL = "https://github.com/KaungPyaeTheinTun?tab=repositories";
 
 const projects = [
   {
-    title: "Bus Ticket System",
+    title: "Artwork Showcase",
     description:
-      "A web-based bus ticket booking platform that lets users browse routes, pick seats, and book tickets online. Includes an admin panel for managing buses, schedules, and bookings.",
-    tech: [
-      "HTML5",
-      "CSS3",
-      "JavaScript",
-      "Bootstrap",
-      "Tailwind",
-      "PHP",
-      "MySQL",
-      "Docker",
-    ],
+      "A visually stunning artwork showcase website built with React and Tailwind CSS. Features a responsive design, smooth animations, and an intuitive user interface for displaying digital art.",
+    tech: ["React", "Tailwind", "Framer Motion", "Vite", "GitHub"],
     github: GITHUB_URL,
-    live: null,
-    image: busTicketImg,
+    live: "https://artwork-showcase.web.app/",
+    image: artwork,
   },
   {
     title: "Training Management System",
@@ -71,14 +62,23 @@ const projects = [
     image: employeeImg,
   },
   {
-    title: "Artwork Showcase",
+    title: "Bus Ticket System",
     description:
-      "A visually stunning artwork showcase website built with React and Tailwind CSS. Features a responsive design, smooth animations, and an intuitive user interface for displaying digital art.",
-    tech: ["React", "Tailwind", "Framer Motion", "Vite", "GitHub"],
+      "A web-based bus ticket booking platform that lets users browse routes, pick seats, and book tickets online. Includes an admin panel for managing buses, schedules, and bookings.",
+    tech: [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Bootstrap",
+      "Tailwind",
+      "PHP",
+      "MySQL",
+      "Docker",
+    ],
     github: GITHUB_URL,
-    live: "https://artwork-showcase.web.app/",
-    image: artwork,
-  },
+    live: null,
+    image: busTicketImg,
+  }
 ];
 
 const ProjectsSection = () => {
