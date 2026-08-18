@@ -2,10 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+@font-face {
+  font-family: "Walone";
+  src: url("/fonts/Z06-Walone Thin.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Walone";
+  src: url("/fonts/Z06-Walone Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Walone";
+  src: url("/fonts/Z06-Walone Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
 
 @layer base {
-  :root, .light {
+  :root,
+  .light {
     --background: 0 0% 97%;
     --foreground: 220 20% 12%;
 
@@ -36,7 +56,11 @@
 
     --radius: 0.75rem;
 
-    --hero-gradient: linear-gradient(135deg, hsl(224 34% 19% / 0.08), hsl(0 0% 97%));
+    --hero-gradient: linear-gradient(
+      135deg,
+      hsl(224 34% 19% / 0.08),
+      hsl(0 0% 97%)
+    );
     --glow: 0 0 40px hsl(224 34% 19% / 0.12);
   }
 
@@ -70,7 +94,11 @@
     --input: 224 25% 30%;
     --ring: 39 56% 89%;
 
-    --hero-gradient: linear-gradient(135deg, hsl(39 56% 89% / 0.1), hsl(224 34% 19%));
+    --hero-gradient: linear-gradient(
+      135deg,
+      hsl(39 56% 89% / 0.1),
+      hsl(224 34% 19%)
+    );
     --glow: 0 0 40px hsl(39 56% 89% / 0.18);
   }
 }
@@ -100,7 +128,11 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Lato', system-ui, -apple-system, sans-serif;
+    font-family:
+      "Walone",
+      system-ui,
+      -apple-system,
+      sans-serif;
   }
 
   ::selection {
