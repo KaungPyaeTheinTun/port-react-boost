@@ -102,7 +102,7 @@ const Navbar = () => {
               />
               <button
                 onClick={() => setLang("en")}
-                className={`relative h-8 px-3 rounded-full text-[10px] font-bold tracking-wider uppercase z-10 transition-colors duration-300 ${
+                className={`relative h-8 px-3 rounded-full text-[10px] font-bold tracking-wider uppercase z-10 flex mt-6 leading-none transition-colors duration-300 ${
                   lang === "en"
                     ? "text-white dark:text-black"
                     : "text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
@@ -112,7 +112,7 @@ const Navbar = () => {
               </button>
               <button
                 onClick={() => setLang("mm")}
-                className={`relative h-8 px-3 rounded-full text-[10px] font-bold tracking-wider uppercase z-10 transition-colors duration-300 ${
+                className={`relative h-8 px-3 rounded-full text-[10px] font-bold tracking-wider uppercase z-10 flex mt-6 leading-none transition-colors duration-300 ${
                   lang === "mm"
                     ? "text-white dark:text-black"
                     : "text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
@@ -128,7 +128,7 @@ const Navbar = () => {
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle Navigation Screen Menu"
             >
-              <span className="text-[11px] font-bold tracking-[0.1em] uppercase hidden sm:inline-block">
+              <span className="text-[11px] font-bold tracking-[0.1em] uppercase hidden sm:inline-flex mt-1.5 leading-none -translate-y-px">
                 {isOpen ? "Close" : "Menu"}
               </span>
               <div className="relative w-3.5 h-3.5 flex items-center justify-center">
