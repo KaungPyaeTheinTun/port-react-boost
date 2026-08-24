@@ -7,7 +7,7 @@ const translations = {
     nav: { about: "About", skills: "Skills", projects: "Projects", experience: "Experience", contact: "Contact", resume: "Resume" },
     hero: {
       greeting: "Hi, my name is",
-      name: "Kaung Pyae Thain Tun.",
+      name: "Kaung Pyae Thein Tun.",
       tagline: "Building AI-powered tools for real-world impact.",
       description: "I'm a full-stack developer specializing in building exceptional digital experiences. Currently focused on building accessible, human-centered products with modern technologies.",
       viewWork: "View My Work",
@@ -54,7 +54,7 @@ const translations = {
     hero: {
       greeting: "မင်္ဂလာပါ၊ ကျွန်တော့်နာမည်က",
       name: "ကောင်းပြည့်သိန်းထွန်း။",
-      tagline: "ဝဘ်အတွက် အရာတွေကို တည်ဆောက်ပါတယ်။",
+      tagline: "Web Applicationအတွက် codingတွေကို တည်ဆောက်ပါတယ်။",
       description: "ကျွန်တော်ဟာ ထူးခြားတဲ့ ဒစ်ဂျစ်တယ် အတွေ့အကြုံတွေကို တည်ဆောက်ရာမှာ အထူးပြုတဲ့ full-stack developer တစ်ယောက်ပါ။",
       viewWork: "လက်ရာကြည့်ရန်",
       resume: "Resume ကိုဒေါင်းလုဒ်လုပ်ပါ။",
