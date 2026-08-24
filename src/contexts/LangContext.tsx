@@ -7,7 +7,7 @@ const translations = {
     nav: { about: "About", skills: "Skills", projects: "Projects", experience: "Experience", contact: "Contact", resume: "Resume" },
     hero: {
       greeting: "Hi, my name is",
-      name: "Kaung Pyae Thein Tun.",
+      name: "Kaung Pyae Thain Tun.",
       tagline: "Building AI-powered tools for real-world impact.",
       description: "I'm a full-stack developer specializing in building exceptional digital experiences. Currently focused on building accessible, human-centered products with modern technologies.",
       viewWork: "View My Work",
