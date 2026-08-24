@@ -1,4 +1,6 @@
 import Navbar from "@/components/Navbar";
+import CursorTrailBackground from "@/components/CursorTrailBackground";
+import SectionScrollIndicator from "@/components/SectionScrollIndicator";
 import HeroSection from "@/components/HeroSection";
 import { TechGrid } from "@/components/TechGrid";
 import AboutSection from "@/components/AboutSection";
@@ -12,8 +14,10 @@ import { LangProvider } from "@/contexts/LangContext";
 const Index = () => {
   return (
     <LangProvider>
-      <div className="min-h-screen bg-background">
+      <div className="relative min-h-screen overflow-x-hidden bg-background">
+        <CursorTrailBackground />
         <Navbar />
+        <SectionScrollIndicator />
         <HeroSection />
         <TechGrid />
         <AboutSection />

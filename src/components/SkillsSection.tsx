@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { useLang } from "@/contexts/LangContext";
 
@@ -48,7 +49,9 @@ const SkillsSection = () => {
 
   return (
     <section id="skills" className="section-padding bg-card/30" ref={ref}>
-      <div className={`max-w-7xl mx-auto transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+      <div
+        className={`max-w-7xl mx-auto transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+      >
         <h2 className="flex items-center gap-3 text-2xl md:text-3xl font-bold text-foreground mb-10">
           <span className="text-primary text-lg font-mono">02.</span>
           {t.skills.title}
@@ -57,32 +60,54 @@ const SkillsSection = () => {
 
         <div className="grid sm:grid-cols-2 gap-8">
           {skillCategories.map((cat, i) => (
-            <div
+            <motion.div
               key={cat.title}
               className={`glass rounded-xl p-6 hover:border-primary/50 transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
-              style={{ transitionDelay: `${200 + i * 120}ms` }}
+              initial={{ opacity: 0, y: 24 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+              transition={{ duration: 0.55, delay: 0.2 + i * 0.12 }}
             >
-              <h3 className="text-primary text-sm font-bold uppercase tracking-wider mb-5">{cat.title}</h3>
+              <h3 className="text-primary text-sm font-bold uppercase tracking-wider mb-5">
+                {cat.title}
+              </h3>
               <div className="space-y-4">
                 {cat.skills.map((skill, j) => (
-                  <div key={skill.name}>
+                  <motion.div
+                    key={skill.name}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={
+                      isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }
+                    }
+                    transition={{
+                      duration: 0.4,
+                      delay: 0.35 + i * 0.12 + j * 0.06,
+                    }}
+                  >
                     <div className="flex justify-between mb-1.5">
-                      <span className="text-sm font-medium text-foreground">{skill.name}</span>
-                      <span className="text-xs text-muted-foreground">{skill.level}%</span>
+                      <span className="text-sm font-medium text-foreground">
+                        {skill.name}
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        {skill.level}%
+                      </span>
                     </div>
                     <div className="w-full h-2 bg-secondary rounded-full overflow-hidden">
-                      <div
+                      <motion.div
                         className="h-full bg-gradient-to-r from-primary to-primary/70 rounded-full transition-all duration-1000 ease-out"
-                        style={{
+                        initial={{ width: 0 }}
+                        animate={{
                           width: isVisible ? `${skill.level}%` : "0%",
-                          transitionDelay: `${400 + i * 120 + j * 80}ms`,
+                        }}
+                        transition={{
+                          duration: 0.8,
+                          delay: 0.45 + i * 0.12 + j * 0.08,
                         }}
                       />
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

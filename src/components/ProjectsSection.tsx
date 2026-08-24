@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ExternalLink, Github, ArrowLeft, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { useLang } from "@/contexts/LangContext";
 import {
@@ -117,31 +118,27 @@ const ProjectsSection = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const getMaxIndex = () => {
-    if (!isMobile) {
-      return Math.max(0, projects.length - 3); // 3 visible items on desktop
-    }
-    return projects.length - 1; // 1 visible item on mobile
-  };
+  const maxIndex = !isMobile
+    ? Math.max(0, projects.length - 3) // 3 visible items on desktop
+    : projects.length - 1; // 1 visible item on mobile
 
   const slideLeft = () => {
     setCurrentIndex((prev) => Math.max(0, prev - 1));
   };
 
   const slideRight = () => {
-    setCurrentIndex((prev) => Math.min(getMaxIndex(), prev + 1));
+    setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
   };
 
   // Automatically adjust current index if layout flips between desktop and mobile
   useEffect(() => {
-    const maxIdx = getMaxIndex();
-    if (currentIndex > maxIdx) {
-      setCurrentIndex(maxIdx);
+    if (currentIndex > maxIndex) {
+      setCurrentIndex(maxIndex);
     }
-  }, [isMobile]);
+  }, [currentIndex, maxIndex]);
 
   const cannotSlideLeft = currentIndex === 0;
-  const cannotSlideRight = currentIndex === getMaxIndex();
+  const cannotSlideRight = currentIndex === maxIndex;
 
   const totalProjectsFormatted = String(projects.length).padStart(2, "0");
 
@@ -218,11 +215,16 @@ const ProjectsSection = () => {
                   : `translateX(calc(-${currentIndex * 33.333}% - ${currentIndex * 0.5}rem))`,
               }}
             >
-              {projects.map((project) => (
-                <div
+              {projects.map((project, index) => (
+                <motion.div
                   key={project.title}
                   // w-full on mobile makes sure it fills exactly 100% viewport width without clipping
                   className="w-full md:w-[calc(33.333%-1rem)] mr-6 shrink-0 glass rounded-xl overflow-hidden hover:border-primary/40 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 group"
+                  initial={{ opacity: 0, y: 28 }}
+                  animate={
+                    isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }
+                  }
+                  transition={{ duration: 0.55, delay: 0.18 + index * 0.1 }}
                 >
                   {/* Card Image */}
                   <div className="relative h-44 overflow-hidden bg-muted">
@@ -289,7 +291,7 @@ const ProjectsSection = () => {
                       ))}
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
