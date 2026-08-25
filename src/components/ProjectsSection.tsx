@@ -12,12 +12,33 @@ import {
 import busTicketImg from "@/assets/project-bus-ticket.png";
 import trainingImg from "@/assets/project-training.png";
 import supportTicketImg from "@/assets/project-support-ticket.png";
+import cursorlineImg from "@/assets/cursorline.png";
 import employeeImg from "@/assets/project-employee.png";
 import artwork from "@/assets/image.png";
 
 const GITHUB_URL = "https://github.com/KaungPyaeTheinTun?tab=repositories";
 
 const projects = [
+  {
+    title: "CursorLine",
+    description:
+      "An interactive AI-powered web application where users with a subscribed plan can ask AI questions and get information instantly. The platform also includes interactive sections for exploring the About, Blog, Changelog, and Features, all presented through a modern and engaging UI.",
+    tech: [
+      "React",
+      "Laravel",
+      "MySQL",
+      "TypeScript",
+      "Tailwind",
+      "Framer Motion",
+      "Vite",
+      "Groq",
+      "Stripe",
+      "GitHub",
+    ],
+    github: "https://github.com/KaungPyaeTheinTun/cursorline_AI",
+    live: "https://app.kaungpyaetheintun.site/",
+    image: cursorlineImg,
+  },
   {
     title: "Artwork Showcase",
     description:
@@ -30,7 +51,7 @@ const projects = [
       "Vite",
       "GitHub",
     ],
-    github: GITHUB_URL,
+    github: "https://github.com/KaungPyaeTheinTun/ArtWork",
     live: "https://artwork-showcase.web.app/",
     image: artwork,
   },
