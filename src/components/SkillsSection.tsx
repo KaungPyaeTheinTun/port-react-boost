@@ -29,6 +29,7 @@ const skillCategories = [
       { name: "MSSQL", level: 80 },
       { name: "Redis", level: 70 },
       { name: "Digital Ocean", level: 50 },
+      { name: "z.com", level: 90 },
       { name: "Docker", level: 78 },
       { name: "CI/CD", level: 82 },
     ],
