@@ -1,34 +1,57 @@
-import React, { useState, useEffect } from "react";
-import "./IntroScreen.css"; 
+import React, { useEffect, useState } from "react";
+import { useReducedMotion } from "framer-motion";
+import ZoomTextTunnel from "@/components/ZoomTextTunnel";
+import "./IntroScreen.css";
+
+const FADE_DELAY_MS = 2050;
+const REMOVE_DELAY_MS = 2550;
 
 const IntroScreen = () => {
   const [isRendered, setIsRendered] = useState(true);
   const [isFadingOut, setIsFadingOut] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
-    // 1. Wait 2.5 seconds, then trigger the fade-out class
-    const fadeTimer = setTimeout(() => {
+    const fadeTimer = window.setTimeout(() => {
       setIsFadingOut(true);
-    }, 1500);
+    }, FADE_DELAY_MS);
 
-    // 2. Wait another 500ms (matching the CSS transition) to completely remove it from DOM
-    const removeTimer = setTimeout(() => {
+    const removeTimer = window.setTimeout(() => {
       setIsRendered(false);
-    }, 1800);
+    }, REMOVE_DELAY_MS);
 
     return () => {
-      clearTimeout(fadeTimer);
-      clearTimeout(removeTimer);
+      window.clearTimeout(fadeTimer);
+      window.clearTimeout(removeTimer);
     };
-  }, []);
+  }, [shouldReduceMotion]);
 
   if (!isRendered) return null;
 
   return (
     <div className={`intro-container ${isFadingOut ? "fade-out" : ""}`}>
-      <h1 className="intro-text text-focus-in">
-        Developer Portfolio
-      </h1>
+      <div className="intro-passage" aria-label="Developer Portfolio">
+        {shouldReduceMotion ? (
+          <h1 className="intro-text">Developer Portfolio</h1>
+        ) : !isFadingOut ? (
+          <ZoomTextTunnel
+            texts={["Developer", "Portfolio"]}
+            tag="h1"
+            color="#0b0f19"
+            hold={600}
+            maxScale={35}
+            playOnce
+            font={{
+              fontSize: "clamp(1.2rem, 8vw, 5.5rem)",
+              fontWeight: 700,
+              textAlign: "center",
+              fontFamily: '"Walone", system-ui, -apple-system, sans-serif',
+              lineHeight: "1em",
+              letterSpacing: "-0.02em",
+            }}
+          />
+        ) : null}
+      </div>
     </div>
   );
 };
