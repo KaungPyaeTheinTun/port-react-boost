@@ -20,7 +20,7 @@ const projects = [
   {
     title: "CursorLine",
     description:
-      "An interactive AI-powered web application where users with a subscribed plan can ask AI questions and get information instantly. The platform also includes interactive sections for exploring the About, Blog, Changelog, and Features, all presented through a modern and engaging UI.",
+      "An interactive AI-powered web application where users with a subscribed plan can ask AI questions and get information instantly.",
     tech: [
       "React",
       "Laravel",
