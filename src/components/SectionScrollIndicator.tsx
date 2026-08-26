@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLang } from "@/contexts/LangContext";
+import { getSectionElement, scrollToSection } from "@/lib/sectionNavigation";
 
 const SectionScrollIndicator = () => {
   const { t, lang } = useLang();
@@ -11,12 +12,14 @@ const SectionScrollIndicator = () => {
       { id: "about", label: t.nav.about },
       { id: "skills", label: t.nav.skills },
       { id: "projects", label: t.nav.projects },
+      { id: "automation", label: t.nav.automation },
       { id: "experience", label: t.nav.experience },
       { id: "contact", label: t.nav.contact },
     ],
     [
       lang,
       t.nav.about,
+      t.nav.automation,
       t.nav.contact,
       t.nav.experience,
       t.nav.projects,
@@ -25,13 +28,28 @@ const SectionScrollIndicator = () => {
   );
 
   useEffect(() => {
+    const getSectionPageTop = (sectionId: string) => {
+      const element = getSectionElement(sectionId);
+      if (!element) return null;
+
+      return window.scrollY + element.getBoundingClientRect().top;
+    };
+
     const updateActiveSection = () => {
       const checkpoint = window.scrollY + window.innerHeight * 0.4;
       let current = sections[0].id;
 
-      for (const section of sections) {
-        const element = document.getElementById(section.id);
-        if (element && checkpoint >= element.offsetTop) {
+      for (let index = 0; index < sections.length; index += 1) {
+        const section = sections[index];
+        const currentTop = getSectionPageTop(section.id);
+        if (currentTop === null) continue;
+
+        const nextTop =
+          index < sections.length - 1
+            ? getSectionPageTop(sections[index + 1].id)
+            : Number.POSITIVE_INFINITY;
+
+        if (checkpoint >= currentTop && checkpoint < nextTop) {
           current = section.id;
         }
       }
@@ -48,16 +66,6 @@ const SectionScrollIndicator = () => {
       window.removeEventListener("resize", updateActiveSection);
     };
   }, [sections]);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (!element) return;
-
-    element.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  };
 
   return (
     <div className="fixed bottom-5 left-1/2 z-40 flex -translate-x-1/2 items-center gap-2 rounded-full border border-neutral-200/70 bg-white/80 px-3 py-2 shadow-lg backdrop-blur-md dark:border-neutral-800/70 dark:bg-black/70 md:bottom-auto md:left-auto md:right-6 md:top-1/2 md:flex-col md:translate-x-0 md:-translate-y-1/2 md:rounded-[1.75rem] md:px-2 md:py-3">

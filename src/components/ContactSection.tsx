@@ -111,7 +111,7 @@ const ContactSection = () => {
         className={`max-w-2xl mx-auto transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
       >
         <p className="text-primary text-sm mb-3 text-center font-mono">
-          05. {t.contact.subtitle}
+          06. {t.contact.subtitle}
         </p>
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-5 text-center">
           {t.contact.title}

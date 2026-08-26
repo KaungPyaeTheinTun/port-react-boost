@@ -7,6 +7,7 @@ import {
   Github,
 } from "lucide-react";
 import { useLang } from "@/contexts/LangContext";
+import { getSectionIdFromHref, scrollToSection } from "@/lib/sectionNavigation";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,19 +39,15 @@ const Navbar = () => {
     };
   }, [isOpen]);
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+  const scrollToTop = () => scrollToSection("home");
 
   const navLinks = [
     { label: t.nav.about, href: "#about", num: "01" },
     { label: t.nav.skills, href: "#skills", num: "02" },
     { label: t.nav.projects, href: "#projects", num: "03" },
-    { label: t.nav.experience, href: "#experience", num: "04" },
-    { label: t.nav.contact, href: "#contact", num: "05" },
+    { label: t.nav.automation, href: "#automation", num: "04" },
+    { label: t.nav.experience, href: "#experience", num: "05" },
+    { label: t.nav.contact, href: "#contact", num: "06" },
   ];
 
   return (
@@ -85,6 +82,11 @@ const Navbar = () => {
         >
           <a
             href="#"
+            onClick={(event) => {
+              event.preventDefault();
+              setIsOpen(false);
+              scrollToTop();
+            }}
             className="text-neutral-900 dark:text-white font-display font-bold tracking-tight text-xl transition-opacity hover:opacity-80"
           >
             PORTFOLIO
@@ -180,7 +182,13 @@ const Navbar = () => {
                 <li key={link.href} className="relative">
                   <a
                     href={link.href}
-                    onClick={() => setIsOpen(false)}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      setIsOpen(false);
+                      window.requestAnimationFrame(() => {
+                        scrollToSection(getSectionIdFromHref(link.href));
+                      });
+                    }}
                     className={`group flex items-baseline gap-4 text-neutral-900 dark:text-white hover:text-neutral-500 dark:hover:text-neutral-400 transition-all duration-300 transform ${
                       isOpen
                         ? "translate-y-0 opacity-100"

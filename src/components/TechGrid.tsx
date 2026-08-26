@@ -1,10 +1,13 @@
 import { motion } from "framer-motion";
-import { useScrollReveal } from "@/hooks/use-scroll-reveal"; // Added scroll reveal hook for smooth timing
-import { useLang } from "@/contexts/LangContext"; // Hooked into your portfolio language system
 
 const techIcons = [
+  { name: "HTML5", slug: "html5", hex: "E34F26" },
+  { name: "CSS3", slug: "css3", hex: "1572B6" },
+  { name: "JavaScript", slug: "javascript", hex: "F7DF1E" },
+  { name: "Tailwind", slug: "tailwindcss", hex: "06B6D4" },
   { name: "PHP", slug: "php", hex: "777BB4" },
   { name: "Laravel", slug: "laravel", hex: "FF2D20" },
+  { name: "WordPress", slug: "wordpress", hex: "21759B" },
   { name: "C#", slug: "csharp", hex: "239120" },
   { name: "ASP.NET", slug: "dotnet", hex: "512BD4" },
   { name: "React.js", slug: "react", hex: "61DAFB" },
@@ -16,23 +19,14 @@ const techIcons = [
 ];
 
 export function TechGrid() {
-  const { ref, isVisible } = useScrollReveal();
-  const { t } = useLang();
-
   // Tripling the icons ensures a seamless loop without running out of items on wide screens
   const marqueeIcons = [...techIcons, ...techIcons, ...techIcons];
 
   return (
     // Background is solid white, border spans full screen width
-    <section
-      ref={ref}
-      className="w-full bg-white overflow-hidden py-8"
-    >
+    <section className="w-full bg-white overflow-hidden py-8">
       {/* Keeps internal content aligned matching the max width constraints of the HeroSection */}
-      <div
-        className={`w-full px-6 sm:px-10 md:px-16 lg:px-24 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-      >
-
+      <div className="w-full px-6 sm:px-10 md:px-16 lg:px-24">
         {/* Marquee Viewport Container - Expands full-width beneath title */}
         <div className="relative w-full overflow-hidden bg-white flex items-center z-10">
           {/* Subtle edge fades to blend the items smoothly as they slide */}

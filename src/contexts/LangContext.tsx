@@ -4,12 +4,21 @@ type Lang = "en" | "mm";
 
 const translations = {
   en: {
-    nav: { about: "About", skills: "Skills", projects: "Projects", experience: "Experience", contact: "Contact", resume: "Resume" },
+    nav: {
+      about: "About",
+      skills: "Skills",
+      projects: "Projects",
+      automation: "Automation",
+      experience: "Experience",
+      contact: "Contact",
+      resume: "Resume",
+    },
     hero: {
       greeting: "Hi, my name is",
       name: "Kaung Pyae Thein Tun.",
       tagline: "Building AI-powered tools for real-world impact.",
-      description: "I'm a full-stack developer specializing in building exceptional digital experiences. Currently focused on building accessible, human-centered products with modern technologies.",
+      description:
+        "I'm a full-stack developer specializing in building exceptional digital experiences. Currently focused on building accessible, human-centered products with modern technologies.",
       viewWork: "View My Work",
       resume: "Download Resume",
     },
@@ -25,12 +34,21 @@ const translations = {
       p2: "My journey in web development started back in college when I decided to build a custom CMS — turns out hacking together a website taught me a lot about HTML & CSS. Since then, I've had the privilege of working across startups and established companies.",
     },
     skills: { title: "Skills & Technologies" },
-    projects: { title: "Featured Projects" },
+    projects: { title: "Selected Projects" },
+    automation: {
+      title: "n8n Automation",
+      kicker: "Workflow Systems",
+      subtitle: "Automations that connect apps, AI, and business operations.",
+      description:
+        "I design n8n workflows that remove repetitive manual work, connect tools across teams, and deliver reliable outputs like emails, notifications, records, and AI-assisted responses.",
+      featuredLabel: "Featured Mock Workflow",
+    },
     experience: { title: "Experience" },
     contact: {
       subtitle: "What's Next?",
       title: "Get In Touch",
-      description: "I'm currently open to new opportunities. Whether you have a question, a project idea, or just want to say hi — drop me a message!",
+      description:
+        "I'm currently open to new opportunities. Whether you have a question, a project idea, or just want to say hi — drop me a message!",
       name: "Name",
       email: "Email",
       message: "Message",
@@ -40,22 +58,34 @@ const translations = {
       send: "Send Message",
       sending: "Sending...",
       successTitle: "Message Sent!",
-      successDesc: "Thanks for reaching out. I'll get back to you as soon as possible.",
+      successDesc:
+        "Thanks for reaching out. I'll get back to you as soon as possible.",
       sendAnother: "Send another message",
       errorRequired: "Please fill in all fields.",
       errorEmail: "Please enter a valid email address.",
       errorLength: "One or more fields exceed the maximum length.",
       errorGeneric: "Something went wrong. Please try again later.",
     },
-    footer: { builtWith: "©Copyright 2023 Kaung Pyae Thein Tun. All rights reserved." },
+    footer: {
+      builtWith: "©Copyright 2023 Kaung Pyae Thein Tun. All rights reserved.",
+    },
   },
   mm: {
-    nav: { about: "အကြောင်း", skills: "ကျွမ်းကျင်မှု", projects: "ပရောဂျက်", experience: "အတွေ့အကြုံ", contact: "ဆက်သွယ်ရန်", resume: "အကျဉ်းချုပ်" },
+    nav: {
+      about: "အကြောင်း",
+      skills: "ကျွမ်းကျင်မှု",
+      projects: "ပရောဂျက်",
+      automation: "အော်တိုမေးရှင်း",
+      experience: "အတွေ့အကြုံ",
+      contact: "ဆက်သွယ်ရန်",
+      resume: "အကျဉ်းချုပ်",
+    },
     hero: {
       greeting: "မင်္ဂလာပါ၊ ကျွန်တော့်နာမည်က",
       name: "ကောင်းပြည့်သိန်းထွန်း။",
       tagline: "Web Applicationအတွက် codingတွေကို တည်ဆောက်ပါတယ်။",
-      description: "ကျွန်တော်ဟာ ထူးခြားတဲ့ ဒစ်ဂျစ်တယ် အတွေ့အကြုံတွေကို တည်ဆောက်ရာမှာ အထူးပြုတဲ့ full-stack developer တစ်ယောက်ပါ။",
+      description:
+        "ကျွန်တော်ဟာ ထူးခြားတဲ့ ဒစ်ဂျစ်တယ် အတွေ့အကြုံတွေကို တည်ဆောက်ရာမှာ အထူးပြုတဲ့ full-stack developer တစ်ယောက်ပါ။",
       viewWork: "လက်ရာကြည့်ရန်",
       resume: "Resume ကိုဒေါင်းလုဒ်လုပ်ပါ။",
     },
@@ -72,11 +102,21 @@ const translations = {
     },
     skills: { title: "ကျွမ်းကျင်မှုများ" },
     projects: { title: "ထင်ရှားသော ပရောဂျက်များ" },
+    automation: {
+      title: "n8n အော်တိုမေးရှင်း",
+      kicker: "Workflow Systems",
+      subtitle:
+        "App များ၊ AI နှင့် လုပ်ငန်းစဉ်များကို ချိတ်ဆက်ပေးသော automation များ",
+      description:
+        "n8n workflow များကို အသုံးပြုပြီး ထပ်ခါတလဲလဲလုပ်ရသော အလုပ်များကို လျှော့ချကာ email, notification, record update နှင့် AI-assisted response များကို ယုံကြည်စိတ်ချစွာ အလိုအလျောက် လုပ်ဆောင်ပေးပါသည်။",
+      featuredLabel: "Featured Mock Workflow",
+    },
     experience: { title: "အတွေ့အကြုံ" },
     contact: {
       subtitle: "နောက်ထပ်ဘာလဲ?",
       title: "ဆက်သွယ်ရန်",
-      description: "ကျွန်တော် အခွင့်အလမ်းသစ်တွေအတွက် အဆင်သင့်ပါ။ မေးခွန်းရှိရင်၊ ပရောဂျက် အိုင်ဒီယာရှိရင် သို့မဟုတ် နှုတ်ဆက်ချင်ရင် — စာပို့လိုက်ပါ!",
+      description:
+        "ကျွန်တော် အခွင့်အလမ်းသစ်တွေအတွက် အဆင်သင့်ပါ။ မေးခွန်းရှိရင်၊ ပရောဂျက် အိုင်ဒီယာရှိရင် သို့မဟုတ် နှုတ်ဆက်ချင်ရင် — စာပို့လိုက်ပါ!",
       name: "အမည်",
       email: "အီးမေးလ်",
       message: "မက်ဆေ့ခ်ျ",
@@ -86,14 +126,18 @@ const translations = {
       send: "ပို့ရန်",
       sending: "ပို့နေသည်...",
       successTitle: "ပို့ပြီးပါပြီ!",
-      successDesc: "ဆက်သွယ်မှုအတွက် ကျေးဇူးတင်ပါတယ်။ တတ်နိုင်သမျှ အမြန်ဆုံး ပြန်လည်ဆက်သွယ်ပါမည်။",
+      successDesc:
+        "ဆက်သွယ်မှုအတွက် ကျေးဇူးတင်ပါတယ်။ တတ်နိုင်သမျှ အမြန်ဆုံး ပြန်လည်ဆက်သွယ်ပါမည်။",
       sendAnother: "နောက်ထပ် မက်ဆေ့ခ်ျ ပို့ရန်",
       errorRequired: "အကွက်အားလုံး ဖြည့်ပါ။",
       errorEmail: "မှန်ကန်သော အီးမေးလ်လိပ်စာ ရိုက်ထည့်ပါ။",
-      errorLength: "အကွက်တစ်ခု သို့မဟုတ် တစ်ခုထက်ပိုသော အကွက်များ အရှည်ဆုံး ကျော်လွန်နေပါသည်။",
+      errorLength:
+        "အကွက်တစ်ခု သို့မဟုတ် တစ်ခုထက်ပိုသော အကွက်များ အရှည်ဆုံး ကျော်လွန်နေပါသည်။",
       errorGeneric: "တစ်ခုခု မှားသွားပါတယ်။ နောက်မှ ပြန်ကြိုးစားပါ။",
     },
-    footer: { builtWith: "©Copyright 2023 Kaung Pyae Thein Tun. All rights reserved." },
+    footer: {
+      builtWith: "©Copyright 2023 Kaung Pyae Thein Tun. All rights reserved.",
+    },
   },
 };
 
