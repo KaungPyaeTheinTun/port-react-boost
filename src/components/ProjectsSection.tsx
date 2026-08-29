@@ -15,6 +15,7 @@ const MAX_VISIBLE = 2;
 const SCALE_STEP = 0.14;
 const DEPTH = 220;
 const MOVE_DURATION_MS = 560;
+const MOBILE_MOVE_DURATION_MS = 360;
 
 const projects = [
   {
@@ -134,12 +135,15 @@ const ProjectsSection = () => {
     };
   }, []);
 
+  const isMobile = viewportWidth < 640;
+  const moveDuration = isMobile ? MOBILE_MOVE_DURATION_MS : MOVE_DURATION_MS;
+
   const lockMovement = useCallback(() => {
     lockRef.current = true;
     window.setTimeout(() => {
       lockRef.current = false;
-    }, MOVE_DURATION_MS);
-  }, []);
+    }, moveDuration);
+  }, [moveDuration]);
 
   const step = useCallback(
     (direction: number) => {
@@ -167,9 +171,11 @@ const ProjectsSection = () => {
     _: MouseEvent | TouchEvent | PointerEvent,
     info: { offset: { x: number } },
   ) => {
-    if (info.offset.x <= -70) {
+    const dragThreshold = isMobile ? 42 : 70;
+
+    if (info.offset.x <= -dragThreshold) {
       step(1);
-    } else if (info.offset.x >= 70) {
+    } else if (info.offset.x >= dragThreshold) {
       step(-1);
     }
   };
@@ -177,7 +183,6 @@ const ProjectsSection = () => {
   const totalProjectsFormatted = String(projects.length).padStart(2, "0");
   const activeProject = projects[currentIndex];
   const activeProjectFormatted = String(currentIndex + 1).padStart(2, "0");
-  const isMobile = viewportWidth < 640;
   const cardWidth = isMobile
     ? Math.min(330, viewportWidth * 0.84)
     : viewportWidth < 1024
@@ -216,28 +221,29 @@ const ProjectsSection = () => {
                 {totalProjectsFormatted}
               </span>
             </div>
-
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => step(-1)}
-                className="p-2.5 rounded-xl border border-border/70 bg-background text-foreground transition-all duration-300 hover:bg-primary/10 hover:text-primary hover:border-primary/40 active:scale-95"
-                aria-label="Previous Project"
-              >
-                <ArrowLeft size={18} />
-              </button>
-              <button
-                onClick={() => step(1)}
-                className="p-2.5 rounded-xl border border-border/70 bg-background text-foreground transition-all duration-300 hover:bg-primary/10 hover:text-primary hover:border-primary/40 active:scale-95"
-                aria-label="Next Project"
-              >
-                <ArrowRight size={18} />
-              </button>
-            </div>
           </div>
         </div>
 
         <div className="relative">
-          <div className="mx-auto flex justify-center px-1 py-4 [perspective:1600px]">
+          <div className="mx-auto flex justify-center px-1 py-4 [perspective:1600px] relative">
+            <button
+              type="button"
+              onClick={() => step(-1)}
+              className="absolute left-2 top-1/2 z-30 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border/70 bg-background/90 text-foreground shadow-lg shadow-black/10 backdrop-blur-sm transition-all duration-300 hover:bg-primary/10 hover:text-primary hover:border-primary/40 active:scale-95 sm:left-4 lg:left-8"
+              aria-label="Previous Project"
+            >
+              <ArrowLeft size={18} />
+            </button>
+
+            <button
+              type="button"
+              onClick={() => step(1)}
+              className="absolute right-2 top-1/2 z-30 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border/70 bg-background/90 text-foreground shadow-lg shadow-black/10 backdrop-blur-sm transition-all duration-300 hover:bg-primary/10 hover:text-primary hover:border-primary/40 active:scale-95 sm:right-4 lg:right-8"
+              aria-label="Next Project"
+            >
+              <ArrowRight size={18} />
+            </button>
+
             <motion.div
               className="relative flex items-center justify-center"
               style={{
@@ -247,7 +253,7 @@ const ProjectsSection = () => {
               }}
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.12}
+              dragElastic={isMobile ? 0.08 : 0.12}
               onDragEnd={handleDragEnd}
             >
               {projects.map((project, index) => {
@@ -306,7 +312,7 @@ const ProjectsSection = () => {
                       transform: `translate(-50%, -50%) translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) scale(${scale})`,
                     }}
                     transition={{
-                      duration: MOVE_DURATION_MS / 1000,
+                      duration: moveDuration / 1000,
                       ease: [0.22, 1, 0.36, 1],
                     }}
                     whileTap={{ scale: isActive ? 0.985 : 0.97 }}
@@ -350,7 +356,6 @@ const ProjectsSection = () => {
               >
                 <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
                   <div className="max-w-3xl">
-                    
                     <h3 className="text-2xl font-bold text-foreground md:text-3xl">
                       {activeProject.title}
                     </h3>

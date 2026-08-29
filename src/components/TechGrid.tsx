@@ -11,7 +11,6 @@ const techIcons = [
   { name: "C#", slug: "csharp", hex: "239120" },
   { name: "ASP.NET", slug: "dotnet", hex: "512BD4" },
   { name: "React.js", slug: "react", hex: "61DAFB" },
-  { name: "Vue.js", slug: "vuedotjs", hex: "4FC08D" },
   { name: "MySQL", slug: "mysql", hex: "4479A1" },
   { name: "Digital Ocean", slug: "digitalocean", hex: "0080FF" },
   { name: "Docker", slug: "docker", hex: "2496ED" },
