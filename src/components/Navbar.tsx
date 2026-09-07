@@ -5,7 +5,10 @@ import {
   FileText,
   Linkedin,
   Github,
+  Moon,
+  Sun,
 } from "lucide-react";
+import { useTheme } from "next-themes";
 import { useLang } from "@/contexts/LangContext";
 import { getSectionIdFromHref, scrollToSection } from "@/lib/sectionNavigation";
 
@@ -14,6 +17,7 @@ const Navbar = () => {
   const [isAtTop, setIsAtTop] = useState(true);
 
   const { t, lang, setLang } = useLang();
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -92,8 +96,16 @@ const Navbar = () => {
             PORTFOLIO
           </a>
 
-          <div className="flex items-center gap-4">
-            {/* Language Switcher */}
+          <div className="flex items-center gap-3 sm:gap-4">
+            <button
+              type="button"
+              aria-label="Toggle color mode"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200/60 bg-white/70 text-neutral-800 shadow-sm transition-all duration-300 hover:scale-[1.02] dark:border-neutral-800/60 dark:bg-black/60 dark:text-white"
+            >
+              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
+
             <div className="relative h-10 px-1 rounded-full border border-neutral-200/60 dark:border-neutral-800/60 bg-white/60 dark:bg-black/60 flex items-center overflow-hidden">
               <div
                 className={`absolute h-8 rounded-full bg-neutral-900 dark:bg-white shadow-sm transition-transform duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] ${
@@ -124,7 +136,6 @@ const Navbar = () => {
               </button>
             </div>
 
-            {/* HAMBURGER TRIGGER BUTTON CONTROLLER */}
             <button
               className="h-10 px-5 rounded-full border border-neutral-200/60 dark:border-neutral-800/60 bg-white text-black dark:bg-white dark:text-black flex items-center gap-2.5 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               onClick={() => setIsOpen(!isOpen)}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useReducedMotion } from "framer-motion";
+import { useTheme } from "next-themes";
 import ZoomTextTunnel from "@/components/ZoomTextTunnel";
 import "./IntroScreen.css";
 
@@ -10,6 +11,8 @@ const IntroScreen = () => {
   const [isRendered, setIsRendered] = useState(true);
   const [isFadingOut, setIsFadingOut] = useState(false);
   const shouldReduceMotion = useReducedMotion();
+  const { resolvedTheme } = useTheme();
+  const isDarkMode = resolvedTheme === "dark";
 
   useEffect(() => {
     const fadeTimer = window.setTimeout(() => {
@@ -29,7 +32,11 @@ const IntroScreen = () => {
   if (!isRendered) return null;
 
   return (
-    <div className={`intro-container ${isFadingOut ? "fade-out" : ""}`}>
+    <div
+      className={`intro-container ${isDarkMode ? "intro-dark" : "intro-light"} ${
+        isFadingOut ? "fade-out" : ""
+      }`}
+    >
       <div className="intro-passage" aria-label="Developer Portfolio">
         {shouldReduceMotion ? (
           <h1 className="intro-text">Developer Portfolio</h1>
@@ -37,7 +44,7 @@ const IntroScreen = () => {
           <ZoomTextTunnel
             texts={["Developer", "Portfolio"]}
             tag="h1"
-            color="#0b0f19"
+            color={isDarkMode ? "#f5f7ff" : "#0b0f19"}
             hold={600}
             maxScale={35}
             playOnce

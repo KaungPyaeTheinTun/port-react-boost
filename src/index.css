@@ -65,41 +65,40 @@
   }
 
   .dark {
-    /* Midnight Indigo background, Vanilla Cream foreground */
-    --background: 224 34% 19%;
-    --foreground: 39 56% 89%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
 
-    --card: 224 32% 23%;
-    --card-foreground: 39 56% 89%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 224 32% 23%;
-    --popover-foreground: 39 56% 89%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 39 56% 89%;
-    --primary-foreground: 224 34% 19%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 224 28% 28%;
-    --secondary-foreground: 39 50% 85%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 224 25% 26%;
-    --muted-foreground: 39 30% 72%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 90%;
 
-    --accent: 39 56% 89%;
-    --accent-foreground: 224 34% 19%;
+    --accent: 0 0% 100%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 60% 55%;
-    --destructive-foreground: 39 56% 89%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 224 25% 30%;
-    --input: 224 25% 30%;
-    --ring: 39 56% 89%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 0 0% 100%;
 
     --hero-gradient: linear-gradient(
       135deg,
-      hsl(39 56% 89% / 0.1),
-      hsl(224 34% 19%)
+      hsl(0 0% 100% / 0.08),
+      hsl(0 0% 0%)
     );
-    --glow: 0 0 40px hsl(39 56% 89% / 0.18);
+    --glow: 0 0 40px hsl(0 0% 100% / 0.12);
   }
 }
 

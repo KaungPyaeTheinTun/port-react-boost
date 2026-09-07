@@ -6,6 +6,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
+import { useTheme } from "next-themes";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { useLang } from "@/contexts/LangContext";
 import profileImg from "@/assets/profile.jpeg";
@@ -13,8 +14,10 @@ import profileImg from "@/assets/profile.jpeg";
 const HeroSection = () => {
   const { ref, isVisible } = useScrollReveal(0.05);
   const { t } = useLang();
+  const { resolvedTheme } = useTheme();
   const [typedName, setTypedName] = useState("");
   const shouldReduceMotion = useReducedMotion();
+  const isDarkMode = resolvedTheme === "dark";
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -87,19 +90,36 @@ const HeroSection = () => {
         className="absolute inset-0 z-0 pointer-events-none"
         style={{ y: backgroundY }}
       >
-        {/* Subtle Cyan Grid Lines */}
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `
-              linear-gradient(to right, rgba(28, 68, 86, 0.15) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(56, 189, 248, 0.08) 1px, transparent 1px)
-            `,
+            backgroundImage: isDarkMode
+              ? `
+                  linear-gradient(to right, rgba(255, 255, 255, 0.18) 1px, transparent 1px),
+                  linear-gradient(to bottom, rgba(96, 165, 250, 0.28) 1px, transparent 1px)
+                `
+              : `
+                  linear-gradient(to right, rgba(28, 68, 86, 0.15) 1px, transparent 1px),
+                  linear-gradient(to bottom, rgba(56, 189, 248, 0.08) 1px, transparent 1px)
+                `,
             backgroundSize: "40px 40px",
+            boxShadow: isDarkMode
+              ? "inset 0 0 120px rgba(59, 130, 246, 0.18)"
+              : "inset 0 0 80px rgba(14, 165, 233, 0.06)",
+            WebkitMaskImage:
+              "radial-gradient(circle at center, black 30%, transparent 90%)",
+            maskImage:
+              "radial-gradient(circle at center, black 30%, transparent 90%)",
           }}
         />
-        {/* Radial Fade to make it dark at the corners */}
-        <div className="absolute inset-0" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: isDarkMode
+              ? "radial-gradient(circle at center, rgba(59,130,246,0.22), transparent 60%)"
+              : "radial-gradient(circle at center, rgba(14,165,233,0.08), transparent 70%)",
+          }}
+        />
       </motion.div>
 
       <div className="relative z-10 max-w-7xl mx-auto w-full grid md:grid-cols-[1fr_minmax(320px,480px)] gap-12 md:gap-10 lg:gap-16 items-center md:items-end">
@@ -109,13 +129,13 @@ const HeroSection = () => {
           style={{ y: contentY }}
         >
           <p
-            className={`text-primary mb-5 text-lg font-medium transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+            className={`text-primary dark:text-white mb-5 text-lg font-medium transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
           >
             {t.hero.greeting}
           </p>
 
           <h1
-            className={`text-3xl md:text-4xl lg:text-5xl font-black text-black mb-4 tracking-tight transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+            className={`text-3xl md:text-4xl lg:text-5xl font-black text-black dark:text-white mb-4 tracking-tight transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
             style={{ transitionDelay: "100ms" }}
           >
             {typedName}
@@ -126,14 +146,14 @@ const HeroSection = () => {
           </h1>
 
           <h2
-            className={`text-3xl md:text-5xl lg:text-5xl font-black text-black mb-6 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+            className={`text-3xl md:text-5xl lg:text-5xl font-black text-black dark:text-white mb-6 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
             style={{ transitionDelay: "200ms" }}
           >
             {t.hero.tagline}
           </h2>
 
           <p
-            className={`text-slate-400 max-w-xl text-lg leading-relaxed mb-10 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+            className={`text-slate-400 dark:text-white/80 max-w-xl text-lg leading-relaxed mb-10 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
             style={{ transitionDelay: "300ms" }}
           >
             {t.hero.description}
@@ -154,10 +174,10 @@ const HeroSection = () => {
             <a
               href="/resume.pdf"
               download="Resume.pdf"
-              className="flex items-center justify-center gap-4 bg-primary text-white pl-8 pr-3 py-2 rounded-lg font-semibold hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
+              className="flex items-center justify-center gap-4 bg-primary text-primary-foreground dark:text-black pl-8 pr-3 py-2 rounded-lg font-semibold hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
             >
               {t.hero.resume || "Download Resume"}
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#0f172a] text-white">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#0f172a] dark:bg-white text-white dark:text-black">
                 <Download size={18} strokeWidth={2.5} />
               </span>
             </a>

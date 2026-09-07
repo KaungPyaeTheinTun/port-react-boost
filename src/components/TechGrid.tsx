@@ -22,15 +22,11 @@ export function TechGrid() {
   const marqueeIcons = [...techIcons, ...techIcons, ...techIcons];
 
   return (
-    // Background is solid white, border spans full screen width
-    <section className="w-full bg-white overflow-hidden py-8">
-      {/* Keeps internal content aligned matching the max width constraints of the HeroSection */}
+    <section className="w-full overflow-hidden bg-background py-8 text-foreground transition-colors duration-300">
       <div className="w-full px-6 sm:px-10 md:px-16 lg:px-24">
-        {/* Marquee Viewport Container - Expands full-width beneath title */}
-        <div className="relative w-full overflow-hidden bg-white flex items-center z-10">
-          {/* Subtle edge fades to blend the items smoothly as they slide */}
-          <div className="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-white to-transparent z-20 pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-white to-transparent z-20 pointer-events-none" />
+        <div className="relative z-10 flex w-full items-center overflow-hidden bg-transparent">
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-8 bg-gradient-to-r from-background to-transparent dark:from-background" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-8 bg-gradient-to-l from-background to-transparent dark:from-background" />
 
           {/* INFINITE MOVING MARQUEE TRACK */}
           <motion.div
@@ -48,15 +44,13 @@ export function TechGrid() {
               return (
                 <div
                   key={`${tech.name}-${i}`}
-                  className="flex flex-col items-center justify-center gap-2 p-4 h-[100px] md:h-[120px] w-[100px] md:w-[120px] shrink-0 relative group cursor-pointer"
+                  className="group relative flex h-[100px] w-[100px] shrink-0 cursor-pointer flex-col items-center justify-center gap-2 p-4 md:h-[120px] md:w-[120px]"
                 >
-                  {/* Hover background highlight overlay */}
-                  <div className="absolute inset-0 bg-neutral-50/0 group-hover:bg-neutral-50/60 group-hover:rounded-2xl transition-colors duration-200" />
+                  <div className="absolute inset-0 rounded-2xl bg-neutral-50/0 transition-colors duration-200 group-hover:bg-neutral-100/80 dark:bg-transparent dark:group-hover:bg-neutral-800/80" />
 
-                  {/* Brand Color Icon Mask Layer */}
-                  <div className="w-10 h-10 relative flex items-center justify-center transition-transform duration-300 group-hover:scale-110 z-10 select-none pointer-events-none">
+                  <div className="relative z-10 flex h-10 w-10 items-center justify-center transition-transform duration-300 group-hover:scale-110 select-none pointer-events-none">
                     <div
-                      className="w-full h-full"
+                      className="h-full w-full"
                       style={{
                         backgroundColor: `#${tech.hex}`,
                         WebkitMaskImage: `url(${iconUrl})`,
@@ -71,8 +65,7 @@ export function TechGrid() {
                     />
                   </div>
 
-                  {/* Technology Label */}
-                  <span className="text-[10px] md:text-[11px] font-semibold tracking-wide text-neutral-400 group-hover:text-neutral-900 transition-colors z-10 select-none pointer-events-none">
+                  <span className="pointer-events-none z-10 select-none text-[10px] font-semibold tracking-wide text-neutral-500 transition-colors group-hover:text-neutral-900 dark:text-neutral-300 dark:group-hover:text-white md:text-[11px]">
                     {tech.name}
                   </span>
                 </div>

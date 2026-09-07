@@ -1,5 +1,10 @@
 /* IntroScreen.css */
 .intro-container {
+  --intro-bg: #ffffff;
+  --intro-grid-line: rgba(11, 15, 25, 0.08);
+  --intro-grid-glow: rgba(59, 130, 246, 0.08);
+  --intro-text: #0b0f19;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,22 +13,28 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #ffffff; /* Premium white background */
-  color: #0b0f19;
+  background-color: var(--intro-bg);
+  color: var(--intro-text);
   z-index: 9999;
   opacity: 1;
   transition:
     opacity 0.5s ease-in-out,
-    visibility 0.5s ease-in-out;
+    visibility 0.5s ease-in-out,
+    background-color 0.35s ease;
   visibility: visible;
   padding: 0 20px;
   box-sizing: border-box;
-  overflow: hidden; /* Prevents background lines from spilling out */
+  overflow: hidden;
 }
 
-/* 
-  NEW: Elegant Grid Background with Faded Edges
-*/
+.dark .intro-container,
+.intro-dark {
+  --intro-bg: #050505;
+  --intro-grid-line: rgba(255, 255, 255, 0.18);
+  --intro-grid-glow: rgba(96, 165, 250, 0.38);
+  --intro-text: #f5f7ff;
+}
+
 .intro-container::before {
   content: "";
   position: absolute;
@@ -31,30 +42,23 @@
   left: 0;
   width: 100%;
   height: 100%;
-
-  /* Creates a clean 40px grid pattern using subtle gray lines */
   background-image:
-    linear-gradient(to right, rgba(11, 15, 25, 0.05) 2px, transparent 1px),
-    linear-gradient(to bottom, rgba(11, 15, 25, 0.05) 2px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(to right, var(--intro-grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--intro-grid-line) 1px, transparent 1px);
+  background-size: 32px 32px;
   background-position: center;
-
-  /* 
-    CRITICAL: Smoothly gradients the grid out towards the edges 
-    Fully visible in the center (100%), completely transparent at margins (0%)
-  */
+  box-shadow: inset 0 0 80px var(--intro-grid-glow);
   -webkit-mask-image: radial-gradient(
     circle,
-    rgba(0, 0, 0, 1) 30%,
-    rgba(0, 0, 0, 0) 80%
+    rgba(0, 0, 0, 1) 32%,
+    rgba(0, 0, 0, 0) 84%
   );
   mask-image: radial-gradient(
     circle,
-    rgba(0, 0, 0, 1) 30%,
-    rgba(0, 0, 0, 0) 80%
+    rgba(0, 0, 0, 1) 32%,
+    rgba(0, 0, 0, 0) 84%
   );
-
-  z-index: 0; /* Keeps it strictly behind the text */
+  z-index: 0;
   pointer-events: none;
 }
 
